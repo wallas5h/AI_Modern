@@ -2,6 +2,8 @@ require('dotenv').config();
 import * as cors from 'cors';
 import * as express from "express";
 import { homeRouter } from './routers/homeRouter';
+import './utils/db';
+import { handleError } from './utils/errors';
 
 const { PORT = 3001 } = process.env;
 const app = express();
@@ -9,7 +11,10 @@ const app = express();
 
 
 
-app.use('/', homeRouter)
+app.use('/', homeRouter);
+
+
+app.use(handleError);
 
 
 app.use(cors({
