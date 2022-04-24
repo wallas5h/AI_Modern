@@ -1,0 +1,57 @@
+@import '../../sass/index.scss';
+@import '../../sass/App.scss';
+
+
+.gpt3__features {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+
+  @media (max-width: 990px) {
+    flex-direction: column;
+  }
+
+  &-heading {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+
+    text-align: left;
+    margin-right: 5rem;
+
+    @media (max-width: 990px) {
+      margin: 0 0 2rem 0;
+    }
+
+    h1 {
+      @extend .gradient__text;
+      font-weight: 800;
+      font-size: 34px;
+      line-height: 45px;
+
+      @media (max-width: 550px) {
+        font-size: 28px;
+        line-height: 38px;
+      }
+    }
+
+    p {
+      font-family: $font-family;
+      font-size: 16px;
+      line-height: 30px;
+      color: $color-subtext;
+      margin-top: 2rem;
+    }
+  }
+
+  &-container {
+    flex: 1.5;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

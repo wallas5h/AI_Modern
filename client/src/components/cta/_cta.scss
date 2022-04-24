@@ -1,0 +1,86 @@
+@import '../../sass/index.scss';
+@import '../../sass/App.scss';
+
+.gpt3__cta {
+  border: 1px solid #fff;
+  color: #fff;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  margin: 2rem 6rem;
+  border-radius: 1rem;
+  background: $gradient-bar;
+
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
+
+  @media (max-width: 550px) {
+    margin: 2rem;
+  }
+
+  &-content {
+
+    p {
+      font-size: 16px;
+      line-height: 24px;
+
+      color: $color-footer;
+
+      @media(max-width: 550px) {
+        font-size: 14px;
+        line-height: 20px;
+      }
+    }
+
+    h4 {
+      font-size: 24px;
+      line-height: 30px;
+      color: $color-blog;
+      margin-top: 1rem;
+
+      @media (max-width: 550px) {
+        font-size: 18px;
+        line-height: 24px;
+      }
+    }
+  }
+
+  &-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    button {
+      margin-left: 1rem;
+      border-radius: 2rem;
+      border: none;
+      padding: 1rem 2rem;
+      background-color: #111;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+
+      outline: none;
+      cursor: pointer;
+      min-width: 150px;
+      transition: 0.3s;
+
+      @media (max-width:800px) {
+        margin-top: 1rem;
+      }
+
+      @media (max-width: 550px) {
+        font-size: 14px;
+      }
+
+      &:hover {
+        background-color: #fff;
+        color: #111;
+
+      }
+    }
+  }
+}

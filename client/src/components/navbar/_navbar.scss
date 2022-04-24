@@ -1,0 +1,167 @@
+@import '../../sass/index.scss';
+@import '../../sass/App.scss';
+
+%paragraf {
+  color: #fff;
+  font-family: $font-family;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 25px;
+  text-transform: capitalize;
+
+  margin: 0 1rem;
+  cursor: pointer;
+}
+
+%button {
+  padding: 0.5rem 1rem;
+
+  background-color: #ff4820;
+  border-radius: 5px;
+  border: 0;
+  outline: none;
+  color: #fff;
+  font-family: $font-family;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 25px;
+  cursor: pointer;
+}
+
+
+.gpt__navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 1rem 6rem;
+  @extend .gradient__bg;
+
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+
+
+  &-links {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    &_logo {
+      margin-right: 2rem;
+
+      img {
+        width: 62px;
+        height: 16px;
+      }
+    }
+
+    &_container {
+      display: flex;
+      flex-direction: row;
+
+      p {
+        @extend %paragraf;
+      }
+
+      button {
+        @extend %button;
+      }
+    }
+  }
+
+  &-sign {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    p {
+      @extend %paragraf;
+    }
+
+    button {
+      @extend %button;
+    }
+  }
+}
+
+.gpt__navbar-menu {
+  margin-left: 1rem;
+  display: none;
+  position: relative;
+
+  &_container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-direction: column;
+
+    text-align: end;
+    background-color: $color-footer;
+    padding: 2rem;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    margin-top: 1rem;
+    min-width: 210px;
+    border-radius: 5px;
+    box-shadow: 0 0 5 rgba(0, 0, 0, 0.2);
+
+    &-links-sign {
+      display: none;
+
+
+      button {
+        @extend %button;
+      }
+    }
+
+    p {
+      margin: 1rem 0;
+      cursor: pointer;
+    }
+  }
+
+  svg {
+    cursor: pointer;
+  }
+
+}
+
+@media screen and (max-width: 1050px) {
+  .gpt__navbar-links_container {
+    display: none;
+  }
+
+  .gpt__navbar-menu {
+    display: flex;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .gpt__navbar {
+    padding: 1rem 4rem;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .gpt__navbar {
+    padding: 1rem 2rem;
+  }
+
+  .gpt__navbar-sign {
+    display: none;
+  }
+
+  .gpt__navbar-menu_container {
+    top: 20px;
+
+    &-links-sign {
+      display: block;
+    }
+  }
+}
