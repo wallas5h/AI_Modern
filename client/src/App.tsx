@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { AppContext } from './AppContext';
 import { Brand, CTA, Features, Login, Navbar } from './components';
+import { LoginTypes } from './components/login/Login';
 import { Blog, Footer, Header, Possibility, WhatGPT3 } from './containers';
 import './sass/App.scss';
 
@@ -9,7 +10,9 @@ import './sass/App.scss';
 function App() {
 
   const [loginVisible, setLoginVisible] = useState<boolean>(false);
-  const [isUserLogged, setIsUserLogged] = useState<boolean>(false)
+  const [isUserLogged, setIsUserLogged] = useState<boolean>(false);
+
+  const [loginMode, setLoginMode] = useState(LoginTypes.SIGNIN);
 
   // true login view visible, 
 
@@ -31,7 +34,10 @@ function App() {
     else {
       setIsUserLogged(false)
     }
+  }
 
+  const changeLoginMode = (value: LoginTypes) => {
+    setLoginMode(value)
   }
 
 
@@ -41,7 +47,9 @@ function App() {
         loginVisible,
         changeLoginVisible,
         isUserLogged,
-        changeUserLogged
+        changeUserLogged,
+        loginMode,
+        changeLoginMode,
       }}>
         <div className="App">
           <div className="gradient__bg">

@@ -1,4 +1,6 @@
 // import { Input } from "./Input";
+import React from "react";
+import { AppContext } from './../../AppContext';
 import { LoginTypes } from "./Login";
 import './_loginForm.scss';
 
@@ -19,7 +21,10 @@ interface Props {
   changeMode: (value: LoginTypes) => void
 }
 
-export const LoginForm = ({ mode, changeMode }: Props) => {
+export const LoginForm = () => {
+
+  const context = React.useContext(AppContext);
+  const { loginMode, changeLoginMode } = context;
 
   return (
     <>
@@ -27,16 +32,16 @@ export const LoginForm = ({ mode, changeMode }: Props) => {
       <form > {/* onSubmit={} */}
         <div className="form-block__input-wrapper">
 
-          {mode === LoginTypes.SIGNIN ? <SingInForm mode={mode} changeMode={changeMode} /> : <SingUpForm mode={mode} changeMode={changeMode} />}
+          {loginMode === LoginTypes.SIGNIN ? <SingInForm /> : <SingUpForm />}
 
         </div>
-        <button className="button button--primary full-width" type="submit">{mode === LoginTypes.SIGNIN ? 'Sign In' : 'Sign Up'}</button>
+        <button className="button button--primary full-width" type="submit">{loginMode === LoginTypes.SIGNIN ? 'Sign In' : 'Sign Up'}</button>
       </form>
     </>
   )
 }
 
-const SingInForm = ({ mode }: Props) => {
+const SingInForm = () => {
 
   return (
     <>
@@ -48,7 +53,7 @@ const SingInForm = ({ mode }: Props) => {
   )
 }
 
-const SingUpForm = ({ mode }: Props) => {
+const SingUpForm = () => {
 
   return (
     <>

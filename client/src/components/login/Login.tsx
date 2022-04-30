@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { AppContext } from './../../AppContext';
 import { LoginComponent } from "./LoginComponent";
 import './_login.scss';
@@ -12,38 +12,32 @@ export const enum LoginTypes {
 
 }
 
+interface loginContextType {
+  mode: LoginTypes,
+  changeMode: (value: LoginTypes) => void
+}
+
+export const LoginContext = React.createContext<loginContextType>({
+  mode: LoginTypes.SIGNIN,
+  changeMode: () => { },
+});
 
 export const Login = () => {
 
-  const context = React.useContext(AppContext)
-  const { isUserLogged, loginVisible } = context;
-
-  // const isUserLogged = true;
-  // const loginVisible = false;
-
   const [mode, setMode] = useState(LoginTypes.SIGNIN);
 
-  useEffect(() => {
-    if (!isUserLogged) {
-      setMode(LoginTypes.SIGNIN)
-    }
-    else {
-      setMode(LoginTypes.SIGNUP)
-    }
-  }, [loginVisible])
+  const context = React.useContext(AppContext)
+  const { isUserLogged, loginVisible, loginMode, changeLoginMode } = context;
+
 
   if (!loginVisible) {
     return null
   }
 
-  const changeMode = (value: LoginTypes) => {
-    setMode(value)
-  }
 
   return (
-
     <div className="gpt__login-wrapper">
-      <LoginComponent mode={mode} changeMode={changeMode} />
+      <LoginComponent />
     </div>
 
   )

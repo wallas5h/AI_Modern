@@ -2,6 +2,7 @@ import * as React from 'react';
 import { RiCloseLine, RiMenu3Line } from 'react-icons/ri';
 import { Link } from 'react-scroll';
 import logo from '../../assets/logo.svg';
+import { LoginTypes } from '../login/Login';
 import { AppContext } from './../../AppContext';
 import './_navbar.scss';
 
@@ -37,8 +38,19 @@ export const Navbar = () => {
 
   const context = React.useContext(AppContext)
   const { changeLoginVisible } = context;
+  const { loginMode, changeLoginMode } = context;
 
-  // console.log(context)
+  const handleSigninClick = () => {
+    changeLoginVisible(true);
+    changeLoginMode(LoginTypes.SIGNIN);
+    setToggleMenu(false)
+  }
+
+  const handleSignupClick = () => {
+    changeLoginVisible(true);
+    changeLoginMode(LoginTypes.SIGNUP);
+    setToggleMenu(false)
+  }
 
   return (
     <>
@@ -52,10 +64,8 @@ export const Navbar = () => {
           </div>
         </div>
         <div className="gpt__navbar-sign">
-          <p onClick={() => changeLoginVisible(true)}>Sign in</p>
-          <button onClick={() => changeLoginVisible(true)}>Sign up</button>
-          {/* <p>Sign in</p>
-          <button >Sign up</button> */}
+          <p onClick={handleSigninClick}>Sign in</p>
+          <button onClick={handleSignupClick}>Sign up</button>
         </div>
         <div className="gpt__navbar-menu">
           {toggleMenu ?
@@ -68,8 +78,8 @@ export const Navbar = () => {
               <div className="gpt__navbar-menu_container-links">
                 <Menu ToggleMenu={() => setToggleMenu(false)} />
                 <div className="gpt__navbar-menu_container-links-sign">
-                  <p>Sign in</p>
-                  <button>Sign up</button>
+                  <p onClick={handleSigninClick}>Sign in</p>
+                  <button onClick={handleSignupClick}>Sign up</button>
                 </div>
               </div>
 
