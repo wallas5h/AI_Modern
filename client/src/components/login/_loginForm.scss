@@ -1,0 +1,88 @@
+@import '../../sass/index.scss';
+@import '../../sass/App.scss';
+
+$inputHeight: 15px;
+$offset: 5px;
+$transitionEasing: cubic-bezier(.36, 1, .62, .98);
+
+.form-block {
+  position: relative;
+  margin: 100px auto 0;
+  width: 320px;
+  padding: 25px;
+  background-color: $color-blog;
+  border-radius: 2px;
+  box-shadow: 0 0 16px 9px rgba(0, 0, 0, 0.07);
+}
+
+.form-block__input-wrapper {
+
+  position: relative;
+  margin-top: 20px;
+  margin-bottom: 2px;
+  transition: all .25s $transitionEasing .3s;
+
+}
+
+.form-group {
+  &--signup {
+    position: absolute;
+    top: 0;
+    left: $offset;
+    width: 100%;
+  }
+}
+
+.form-group__input {
+  display: block;
+  font-size: 15px;
+  color: #fff;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 16px;
+  padding: 14px 10px;
+  margin-bottom: 15px;
+  background: rgba(255, 255, 255, .25);
+  border: 1px solid rgba(255, 255, 255, .1);
+  border-radius: 2px;
+
+  &:focus {
+    outline: none;
+    border: 1px solid #fff;
+    background: transparent;
+  }
+
+}
+
+
+
+.full-width {
+  width: 100%;
+}
+
+.button {
+  display: inline-block;
+  padding: 15px 12px;
+  margin-bottom: 0;
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: none;
+  border-radius: 2 pz;
+  transition: all .2s ease-in-out;
+  box-shadow: 0px 0px 13px 8px rgba(0, 0, 0, 0.1);
+
+  &--primary {
+    background: $color-subtext;
+    color: #fff;
+  }
+
+  &:hover {
+    box-shadow: 0px 0px 18px 15px rgba(0, 0, 0, 0.15);
+  }
+}

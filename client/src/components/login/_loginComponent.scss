@@ -1,0 +1,105 @@
+@import '../../sass/index.scss';
+@import '../../sass/App.scss';
+
+
+@mixin transition($transition...) {
+  -moz-transition: $transition;
+  -webkit-transition: $transition;
+  transition: $transition;
+}
+
+$background1: #433B7C;
+$background2: #2C497F;
+
+.form-block-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  @include transition(all .85s ease-in-out);
+
+}
+
+.form-block {
+  position: relative;
+  margin: 100px auto 0;
+  width: 320px;
+  padding: 25px;
+  background-color: $color-blog;
+  border-radius: 2px;
+  box-shadow: 0 0 16px 9px rgba(0, 0, 0, 0.07);
+}
+
+.form-block__header {
+  margin-bottom: 20px;
+  // padding: 20px;
+
+  h1 {
+    font-size: 30px;
+    margin: 0 0 20px;
+  }
+}
+
+.form-block__toggle-block {
+  position: relative;
+
+  span {
+    font-size: 13px;
+    font-weight: 400;
+    color: rgba(#fff, 0.7);
+  }
+}
+
+input[type="checkbox"] {
+  display: none;
+
+  +label {
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 10px;
+      right: 0;
+      width: 43px;
+      height: 8px;
+      background: rgba(255, 255, 255, .4);
+      cursor: pointer;
+      border-radius: 50px;
+    }
+
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 1px;
+      right: 18px;
+      width: 25px;
+      height: 25px;
+      background: $color-subtext;
+      cursor: pointer;
+      border-radius: 50%;
+      box-shadow: 1px 1px 0px 0px rgba(0, 0, 0, 0.15);
+      transition: all .3s ease-in-out;
+    }
+  }
+
+  &:checked+label:after {
+    right: 0;
+  }
+}
+
+.btnComponent {
+  position: relative;
+  height: 3rem;
+  width: 100%;
+}
+
+.xBtn {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  cursor: pointer;
+  // padding: 10px;
+}

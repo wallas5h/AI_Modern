@@ -1,0 +1,14 @@
+@import '../../sass/index.scss';
+@import '../../sass/App.scss';
+
+.gpt__login-wrapper {
+
+  position: fixed;
+  top: 4rem;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: scroll;
+  z-index: 1000;
+  @extend .gradient__bg;
+}

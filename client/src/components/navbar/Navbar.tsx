@@ -2,6 +2,7 @@ import * as React from 'react';
 import { RiCloseLine, RiMenu3Line } from 'react-icons/ri';
 import { Link } from 'react-scroll';
 import logo from '../../assets/logo.svg';
+import { AppContext } from './../../AppContext';
 import './_navbar.scss';
 
 interface Props {
@@ -34,6 +35,11 @@ export const Navbar = () => {
 
   const [toggleMenu, setToggleMenu] = React.useState<boolean>(false)
 
+  const context = React.useContext(AppContext)
+  const { changeLoginVisible } = context;
+
+  // console.log(context)
+
   return (
     <>
       <div className="gpt__navbar">
@@ -46,8 +52,10 @@ export const Navbar = () => {
           </div>
         </div>
         <div className="gpt__navbar-sign">
-          <p>Sign in</p>
-          <button>Sign up</button>
+          <p onClick={() => changeLoginVisible(true)}>Sign in</p>
+          <button onClick={() => changeLoginVisible(true)}>Sign up</button>
+          {/* <p>Sign in</p>
+          <button >Sign up</button> */}
         </div>
         <div className="gpt__navbar-menu">
           {toggleMenu ?
