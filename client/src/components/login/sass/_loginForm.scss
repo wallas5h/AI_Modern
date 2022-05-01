@@ -1,5 +1,5 @@
-@import '../../sass/index.scss';
-@import '../../sass/App.scss';
+@import '../../../sass/index.scss';
+@import '../../../sass/App.scss';
 
 $inputHeight: 15px;
 $offset: 5px;
@@ -80,9 +80,76 @@ $transitionEasing: cubic-bezier(.36, 1, .62, .98);
   &--primary {
     background: $color-subtext;
     color: #fff;
+    font-weight: bold;
   }
 
   &:hover {
     box-shadow: 0px 0px 18px 15px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.form-group__validation {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  border-radius: 2px;
+  padding-left: 5px;
+
+  background-color: #ddd;
+
+  &--signup {
+    background-color: transparent;
+    margin-bottom: 10px;
+  }
+
+  span {
+    color: rgb(228, 77, 77);
+    font-weight: bold;
+    margin: 5px 0;
+    font-size: .8rem;
+  }
+
+  .xBtn--validation {
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #042c54;
+    font-size: 42px;
+    cursor: pointer;
+
+    &:hover {
+      font-weight: bold;
+    }
+  }
+
+  .button {
+    padding: 2px 0;
+    margin-bottom: 5px;
+    color: #042c54;
+    background-color: transparent;
+    text-transform: capitalize;
+    box-shadow: none;
+  }
+}
+
+.form-group__validation__terms {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  // letter-spacing: 1px;
+
+  input {
+    transform: scale(1.2);
+    margin-right: 20px;
+  }
+
+  a {
+    margin-left: 5px;
+    color: rgb(228, 77, 77);
+    text-decoration: underline;
   }
 }

@@ -8,6 +8,8 @@ export interface AppContextType {
   changeUserLogged: (value: boolean) => void
   loginMode: LoginTypes,
   changeLoginMode: (value: LoginTypes) => void,
+  userName: string,
+  changeUserName: (value: string) => void
 }
 
 export const defaultObject = {
@@ -19,6 +21,10 @@ export const defaultObject = {
 
   isUserLogged: false,
   changeUserLogged: () => { },
+
+  userName: '',
+  changeUserName: () => { },
+
 }
 
 export const AppContext = createContext<AppContextType>(defaultObject)

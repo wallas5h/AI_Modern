@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { AppContext } from './../../AppContext';
 import { LoginComponent } from "./LoginComponent";
-import './_login.scss';
+import { LoginContext } from "./LoginContext";
+import './sass/_login.scss';
 
-
-// https://codepen.io/Mr_Dzi/pen/WpeYNQ
 
 export const enum LoginTypes {
   SIGNIN = 'signin',
@@ -12,33 +11,32 @@ export const enum LoginTypes {
 
 }
 
-interface loginContextType {
-  mode: LoginTypes,
-  changeMode: (value: LoginTypes) => void
-}
 
-export const LoginContext = React.createContext<loginContextType>({
-  mode: LoginTypes.SIGNIN,
-  changeMode: () => { },
-});
 
 export const Login = () => {
-
-  const [mode, setMode] = useState(LoginTypes.SIGNIN);
 
   const context = React.useContext(AppContext)
   const { isUserLogged, loginVisible, loginMode, changeLoginMode } = context;
 
+  const [loading, setLoading] = useState<boolean>(false);
+
+
+  const changeLoadingLogData = (value: boolean) => {
+    setLoading(value)
+  }
 
   if (!loginVisible) {
     return null
   }
 
-
   return (
-    <div className="gpt__login-wrapper">
-      <LoginComponent />
-    </div>
-
+    <LoginContext.Provider value={{
+      loadingLogData: loading,
+      changeLoadingLogData
+    }}>
+      <div className="gpt__login-wrapper">
+        <LoginComponent />
+      </div>
+    </LoginContext.Provider>
   )
 }

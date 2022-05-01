@@ -1,5 +1,5 @@
-@import '../../sass/index.scss';
-@import '../../sass/App.scss';
+@import '../../../sass/index.scss';
+@import '../../../sass/App.scss';
 
 
 @mixin transition($transition...) {
@@ -52,7 +52,10 @@ $background2: #2C497F;
   }
 }
 
-input[type="checkbox"] {
+// .input--toggler{
+
+// }
+input[type="checkbox"].input--toggler {
   display: none;
 
   +label {

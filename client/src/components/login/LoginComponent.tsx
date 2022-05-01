@@ -1,20 +1,20 @@
 import React from 'react';
 import { RiCloseLine } from 'react-icons/ri';
 import { AppContext } from './../../AppContext';
-import { LoginContext, LoginTypes } from "./Login";
+import { LoginTypes } from "./Login";
+import { LoginContext } from './LoginContext';
 import { LoginForm } from "./LoginForm";
-import './_loginComponent.scss';
+import './sass/_loginComponent.scss';
+import { Spinner } from './Spinner';
 
-interface Props {
-  mode: string
-  changeMode: (value: LoginTypes) => void
-}
 
 export const LoginComponent = () => {
 
   const context = React.useContext(AppContext);
-  const loginContext = React.useContext(LoginContext);
   const { changeLoginVisible } = context;
+
+  const loginContext = React.useContext(LoginContext);
+  const { loadingLogData } = loginContext
 
   const { loginMode, changeLoginMode } = context;
 
@@ -38,15 +38,39 @@ export const LoginComponent = () => {
         </div>
 
         <header className="form-block__header">
-          <h1>{loginMode === LoginTypes.SIGNIN ? 'Sign in!' : 'Sign up'}</h1>
-          <div className="form-block__toggle-block">
-            <span>{loginMode === LoginTypes.SIGNIN ? 'Don\'t' : 'Already'} have an account? Click here </span>
-            <input id="form-toggler" type="checkbox" onChange={toggleChangeMode} />
-            <label htmlFor="form-toggler"></label>
-          </div>
-          <LoginForm /> {/* onSubmit={this.props.onSubmit}  */}
+
+          {loadingLogData ?
+            <Spinner />
+            :
+            <div>
+              <h1>{loginMode === LoginTypes.SIGNIN ? 'Sign in!' : 'Sign up!'}</h1>
+              < ToggleInput loginMode={loginMode} toggleChangeMode={toggleChangeMode} />
+              <LoginForm />
+            </div>
+          }
         </header>
       </section>
+    </>
+  )
+}
+
+
+interface toggleProps {
+  loginMode: LoginTypes
+  toggleChangeMode: () => void
+}
+
+const ToggleInput = ({ loginMode, toggleChangeMode }: toggleProps) => {
+
+
+  return (
+    <>
+      <div className="form-block__toggle-block">
+        <span>{loginMode === LoginTypes.SIGNIN ? 'Don\'t' : 'Already'} have an account? Click here </span>
+        <input className="input--toggler" id="form-toggler" type="checkbox" onChange={toggleChangeMode} />
+        <label htmlFor="form-toggler"></label>
+
+      </div>
     </>
   )
 }

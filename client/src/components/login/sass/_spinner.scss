@@ -1,0 +1,44 @@
+@import '../../../sass/index.scss';
+
+
+.spinner {
+  // position: absolute;
+  // top: 0;
+  // left: 0;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  &__content {
+    margin-top: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: $color-text;
+    animation: rotateplane 1.5s infinite ease-in-out;
+  }
+
+  p {
+    margin-top: 50px;
+    flex-basis: 100%;
+    text-align: center;
+    font-size: 24px;
+  }
+}
+
+@keyframes rotateplane {
+  0% {
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg)
+  }
+
+  50% {
+    transform: perspective(120px) rotateX(-180deg) rotateY(0deg)
+  }
+
+  100% {
+    transform: perspective(120px) rotateX(-180deg) rotateY(-180deg)
+  }
+}
