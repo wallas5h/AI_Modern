@@ -1,3 +1,7 @@
+import { FieldPacket } from "mysql2";
+import { UserRecord } from "../../records/user.record";
+
+export type UserRecordResults = [UserRecord[], FieldPacket[]];
 
 export interface UserRegister {
   id?: string
@@ -11,7 +15,8 @@ export interface UserRegister {
 export type UserRegisterReq = Omit<UserRegister, 'id'>
 
 export interface UserRegisterRes {
-  mail: string
+  id?: string
+  message?: string
 }
 
 export interface UserLog {

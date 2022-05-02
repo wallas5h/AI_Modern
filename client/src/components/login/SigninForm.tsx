@@ -45,7 +45,7 @@ export const SignInForm = () => {
         const res = await fetch('http://localhost:3001/login', {
           method: 'POST',
           headers: {
-            'Content-Type': 'aplication/json'
+            'Content-Type': 'application/json'
           },
           body: JSON.stringify(form)
         })

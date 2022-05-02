@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Czas generowania: 02 Maj 2022, 10:32
+-- Czas generowania: 02 Maj 2022, 15:07
 -- Wersja serwera: 8.0.28-0ubuntu0.20.04.3
 -- Wersja PHP: 7.4.3
 
@@ -34,7 +34,9 @@ CREATE TABLE `registration` (
   `lastName` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `mail` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` binary(60) NOT NULL,
-  `terms` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+  `terms` tinyint(1) NOT NULL,
+  `refreshToken` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sessionToken` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --

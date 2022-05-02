@@ -1,6 +1,6 @@
 
 import React, { ChangeEvent, FormEvent, useState } from "react";
-import { UserLogInRes } from 'types';
+import { UserRegisterRes } from 'types';
 import { LoginContext } from "./LoginContext";
 import { messagesValidation as messages, singupFormValidation as formValidation } from "./logs.utils";
 import './sass/_loginForm.scss';
@@ -51,14 +51,12 @@ export const SignUpForm = () => {
     changeLoadingLogData(true);
     const validation = formValidation(form)
 
-    console.log(validation)
-
     if (validation.correct) {
       try {
         const res = await fetch('http://localhost:3001/register', {
           method: 'POST',
           headers: {
-            'Content-Type': 'aplication/json'
+            'Content-Type': 'application/json'
           },
           body: JSON.stringify({
             firstName: form.firstName,
@@ -69,9 +67,9 @@ export const SignUpForm = () => {
           })
         })
 
-        const data: UserLogInRes = await res.json();
+        const data: UserRegisterRes = await res.json();
 
-        console.log(data)
+        console.log(data.message)
       }
       finally {
         changeLoadingLogData(false);
