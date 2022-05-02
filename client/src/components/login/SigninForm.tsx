@@ -10,7 +10,7 @@ import './sass/_loginForm.scss';
 export const SignInForm = () => {
 
   const loginContext = React.useContext(LoginContext);
-  const { changeLoadingLogData } = loginContext
+  const { changeLoadingLogData, serverSigninMessage: serverMessage, setServerSigninMessage: setServerMessage } = loginContext
 
   const appContext = React.useContext(AppContext);
   const { changeUserName, changeUserLogged } = appContext;
@@ -114,6 +114,13 @@ export const SignInForm = () => {
           </div>
         </div>
         <button className="button button--primary full-width" type="submit">Sign In</button>
+        {serverMessage &&
+          <div className="form-group__validation--server">
+
+            <span> {serverMessage}</span>
+            <button className="button button--primary full-width" onClick={() => setServerMessage(null)}>OK</button>
+          </div>
+        }
       </form>
     </>
   )

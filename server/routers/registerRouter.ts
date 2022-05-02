@@ -15,7 +15,7 @@ registerRouter
   .post('/', async (req, res) => {
 
     if (await UserRepository.findOne(req.body.mail)) {
-      const message = `User with mail: ${req.body.mail} has just existed in Organisation.`
+      const message = `Server message: User with mail: ${req.body.mail} has just existed in Organisation.`
       res.json({
         message
       });

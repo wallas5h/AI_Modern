@@ -1,4 +1,3 @@
-
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import { UserRegisterRes } from 'types';
 import { LoginContext } from "./LoginContext";
@@ -8,7 +7,7 @@ import './sass/_loginForm.scss';
 export const SignUpForm = () => {
 
   const loginContext = React.useContext(LoginContext);
-  const { changeLoadingLogData } = loginContext
+  const { changeLoadingLogData, serverSignupMessage: serverMessage, setServerSignupMessage: setServerMessage } = loginContext
 
   const [form, setForm] = useState({
     firstName: '',
@@ -69,8 +68,15 @@ export const SignUpForm = () => {
 
         const data: UserRegisterRes = await res.json();
 
-        console.log(data.message)
+        console.log(typeof data.message)
+
+        if (data.message) {
+          setServerMessage(data.message)
+          console.log('dziła warunek')
+        }
+
       }
+
       finally {
         changeLoadingLogData(false);
         setForm({
@@ -177,7 +183,7 @@ export const SignUpForm = () => {
                 <span> {messages.repeat__incorect}</span>
               </div>
             }
-            <label htmlFor="terms" className="form-group__validation__terms">
+            <label htmlFor="terms" className="form-group__validation__checkbox">
               <input
                 type="checkbox"
                 name="terms"
@@ -195,6 +201,13 @@ export const SignUpForm = () => {
           </div>
         </div>
         <button className="button button--primary full-width" type="submit">Sign Up</button>
+        {serverMessage &&
+          <div className="form-group__validation--server">
+
+            <span> {serverMessage}</span>
+            <button className="button button--primary full-width" onClick={() => setServerMessage(null)}>OK</button>
+          </div>
+        }
       </form>
     </>
   )

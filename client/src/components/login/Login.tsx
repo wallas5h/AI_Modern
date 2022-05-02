@@ -19,6 +19,9 @@ export const Login = () => {
   const { isUserLogged, loginVisible, loginMode, changeLoginMode } = context;
 
   const [loading, setLoading] = useState<boolean>(false);
+  const [serverSignupMessage, setServerSignupMessage] = useState<string | null>(null);
+  const [serverSigninMessage, setServerSigninMessage] = useState<string | null>(null)
+
 
 
   const changeLoadingLogData = (value: boolean) => {
@@ -32,7 +35,11 @@ export const Login = () => {
   return (
     <LoginContext.Provider value={{
       loadingLogData: loading,
-      changeLoadingLogData
+      changeLoadingLogData,
+      serverSignupMessage,
+      setServerSignupMessage,
+      serverSigninMessage,
+      setServerSigninMessage
     }}>
       <div className="gpt__login-wrapper">
         <LoginComponent />

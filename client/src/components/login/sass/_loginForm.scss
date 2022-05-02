@@ -5,6 +5,10 @@ $inputHeight: 15px;
 $offset: 5px;
 $transitionEasing: cubic-bezier(.36, 1, .62, .98);
 
+form {
+  position: relative;
+}
+
 .form-block {
   position: relative;
   margin: 100px auto 0;
@@ -136,7 +140,7 @@ $transitionEasing: cubic-bezier(.36, 1, .62, .98);
   }
 }
 
-.form-group__validation__terms {
+.form-group__validation__checkbox {
   display: flex;
   align-items: center;
   margin: 10px 0;
@@ -152,4 +156,30 @@ $transitionEasing: cubic-bezier(.36, 1, .62, .98);
     color: rgb(228, 77, 77);
     text-decoration: underline;
   }
+}
+
+.form-group__validation--server {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: -2px;
+  right: -2px;
+  bottom: 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2px;
+
+
+  background-color: #042c54;
+
+  span {
+    color: rgb(228, 77, 77);
+    font-weight: bold;
+    margin: 40px 0;
+    font-size: 1rem;
+    text-align: center;
+  }
+
+
 }
