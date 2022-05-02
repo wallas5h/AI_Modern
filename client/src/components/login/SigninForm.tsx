@@ -52,7 +52,7 @@ export const SignInForm = () => {
 
         const data: UserLogInRes = await res.json();
 
-        if (!data._id) {
+        if (!data.id) {
           setValidationError(true);
         }
         else if (typeof data.mail === 'string') {

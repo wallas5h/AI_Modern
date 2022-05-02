@@ -1,7 +1,6 @@
-import { ObjectId } from "mongodb"
 
 export interface UserRegister {
-  _id?: ObjectId
+  id?: string
   firstName: string
   lastName: string
   mail: string
@@ -9,21 +8,21 @@ export interface UserRegister {
   terms: boolean
 }
 
-export type UserRegisterReq = Omit<UserRegister, '_id'>
+export type UserRegisterReq = Omit<UserRegister, 'id'>
 
 export interface UserRegisterRes {
   mail: string
 }
 
 export interface UserLog {
-  _id: ObjectId
+  id: string
   mail: string
   password: string
 }
 
-export type UserLogInReq = Omit<UserLog, '_id'>
+export type UserLogInReq = Omit<UserLog, 'id'>
 
 export interface UserLogInRes {
-  _id: ObjectId | null
+  id: string | null
   mail: string | null
 }

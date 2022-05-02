@@ -6,5 +6,5 @@ export const homeRouter = Router();
 homeRouter
   .get('/', (req, res) => {
 
-    res.send('działa homeRouter')
+    res.send('home router tests')
   })

@@ -1,20 +1,15 @@
-import { MongoClient } from "mongodb";
+import "express-async-errors";
+import { createPool } from "mysql2/promise";
 
-const uri = process.env.DATABASE;
+const { HOST, USER, PASSWORD, DATABASE } = process.env
 
-const options = {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-};
 
-export const client = new MongoClient(uri);
-export const newsletterMailList = client.db('Newsletter').collection('list');
-export const usersRegistered = client.db('Users').collection('registered');
-// export const booksStorage = client.db('Books').collection('storage');
+export const pool = createPool({
+  host: HOST,
+  user: USER,
+  password: PASSWORD,
+  database: DATABASE,
+  namedPlaceholders: true,
+  decimalNumbers: true,
+})
 
-try {
-  client.connect();
-  console.log('Conected with databases')
-} catch (error) {
-  console.log(error)
-}
