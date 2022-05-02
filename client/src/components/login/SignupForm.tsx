@@ -2,7 +2,7 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import { UserLogInRes } from 'types';
 import { LoginContext } from "./LoginContext";
-import { formValidation, messagesValidationSignup as messages } from "./logs.utils";
+import { messagesValidation as messages, singupFormValidation as formValidation } from "./logs.utils";
 import './sass/_loginForm.scss';
 
 export const SignUpForm = () => {

@@ -1,11 +1,11 @@
 
-import { UserRegisterReq } from 'types';
+import { UserLogInReq, UserRegisterReq } from 'types';
 
 export interface UserRegisterForm extends UserRegisterReq {
   repeat: string
 }
 
-export const messagesValidationSignup = {
+export const messagesValidation = {
   name__incorect: 'first / last names should have at least 3 characters long and not longer than 25 characters',
   mail__incorect: 'Invalid e-mail',
   password__incorect: 'The password must be at least 8 characters, not more than 15 characters and must contain at least one digit, one letter and one special character.',
@@ -13,7 +13,29 @@ export const messagesValidationSignup = {
   terms__incorect: 'Don\'t accepted terms of service'
 }
 
-export const formValidation = (form: UserRegisterForm) => {
+export const singinFormValidation = (form: UserLogInReq) => {
+
+  let mail = false;
+
+  if (
+    typeof form.mail === 'string' &&
+    form.mail.indexOf(' ') === -1 &&
+    form.mail.indexOf('@') !== -1 &&
+    form.mail.lastIndexOf('@') !== -1 &&
+    form.mail.lastIndexOf('.') !== -1 &&
+    form.mail.indexOf('@@') === -1 &&
+    form.mail.length > 2 &&
+    form.mail.length < 26 &&
+    form.mail.match(
+      /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/)
+  ) {
+    mail = true;
+  }
+
+  return { mail }
+}
+
+export const singupFormValidation = (form: UserRegisterForm) => {
   let firstName = false;
   let lastName = false;
   let mail = false;

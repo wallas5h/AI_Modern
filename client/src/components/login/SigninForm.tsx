@@ -4,6 +4,7 @@ import { RiCloseLine } from 'react-icons/ri';
 import { UserLogInReq, UserLogInRes } from 'types';
 import { AppContext } from './../../AppContext';
 import { LoginContext } from "./LoginContext";
+import { messagesValidation as messages, singinFormValidation } from "./logs.utils";
 import './sass/_loginForm.scss';
 
 export const SignInForm = () => {
@@ -19,7 +20,9 @@ export const SignInForm = () => {
     password: ''
   });
 
-  const [validationError, setValidationError] = useState<boolean>(false)
+  const [validationError, setValidationError] = useState<boolean>(false);
+
+  const [mailValidation, setMailValidation] = useState<boolean>(false)
 
   const change = (e: ChangeEvent<HTMLInputElement>) => {
     setForm(prev => ({
@@ -32,31 +35,42 @@ export const SignInForm = () => {
     e.preventDefault();
     changeLoadingLogData(true);
 
-    try {
-      const res = await fetch('http://localhost:3001/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'aplication/json'
-        },
-        body: JSON.stringify(form)
-      })
+    const validation = singinFormValidation(form);
 
-      const data: UserLogInRes = await res.json();
+    if (validation.mail) {
 
-      if (!data._id) {
-        setValidationError(true);
+
+
+      try {
+        const res = await fetch('http://localhost:3001/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'aplication/json'
+          },
+          body: JSON.stringify(form)
+        })
+
+        const data: UserLogInRes = await res.json();
+
+        if (!data._id) {
+          setValidationError(true);
+        }
+        else if (typeof data.mail === 'string') {
+          changeUserLogged(true);
+          changeUserName(data.mail)
+        }
       }
-      else if (typeof data.mail === 'string') {
-        changeUserLogged(true);
-        changeUserName(data.mail)
+      finally {
+        changeLoadingLogData(false);
+        setForm({
+          mail: '',
+          password: ''
+        })
       }
     }
-    finally {
+    else {
+      setMailValidation(!validation.mail);
       changeLoadingLogData(false);
-      setForm({
-        mail: '',
-        password: ''
-      })
     }
   }
 
@@ -75,6 +89,11 @@ export const SignInForm = () => {
               value={form.mail}
               onChange={change}
             />
+            {mailValidation &&
+              <div className="form-group__validation form-group__validation--signup">
+                <span> {messages.mail__incorect}</span>
+              </div>
+            }
             <input
               className="form-group__input"
               type="password"
