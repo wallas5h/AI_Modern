@@ -68,11 +68,8 @@ export const SignUpForm = () => {
 
         const data: UserRegisterRes = await res.json();
 
-        console.log(typeof data.message)
-
         if (data.message) {
           setServerMessage(data.message)
-          console.log('dziła warunek')
         }
 
       }

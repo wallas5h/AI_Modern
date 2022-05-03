@@ -8,12 +8,13 @@ export class UserRecord implements UserRegister {
   mail: string;
   password: string;
   terms: boolean;
-  refreshToken: string;
-  sessionToken?: string | null;
+  confirmed: boolean | null;
+  refreshToken: string | null;
+
 
   constructor(obj: UserRecord) {
 
-    const { id, firstName, lastName, mail, password, terms, refreshToken, sessionToken } = obj;
+    const { id, firstName, lastName, mail, password, terms, confirmed, refreshToken } = obj;
 
     this.id = id ?? uuid();
     this.firstName = firstName;
@@ -21,7 +22,7 @@ export class UserRecord implements UserRegister {
     this.mail = mail;
     this.password = password;
     this.terms = Boolean(terms);
-    this.refreshToken = refreshToken;
-    this.sessionToken = sessionToken ?? null;
+    this.confirmed = Boolean(confirmed) ?? false;
+    this.refreshToken = refreshToken ?? null;
   }
 }

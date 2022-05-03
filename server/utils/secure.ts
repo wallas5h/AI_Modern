@@ -10,7 +10,7 @@ export async function compareText(text: string, hash: string): Promise<boolean> 
   return isMatch;
 }
 
-export async function createSesionToken(data: object) {
+export async function createSessionToken(data: object) {
   try {
     let token = await jwt.sign(data, process.env.ACCESS_TOKEN_KEY, {
       expiresIn: '30m'

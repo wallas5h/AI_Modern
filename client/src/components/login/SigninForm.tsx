@@ -20,8 +20,6 @@ export const SignInForm = () => {
     password: ''
   });
 
-  const [validationError, setValidationError] = useState<boolean>(false);
-
   const [mailValidation, setMailValidation] = useState<boolean>(false)
 
   const change = (e: ChangeEvent<HTMLInputElement>) => {
@@ -32,14 +30,13 @@ export const SignInForm = () => {
   }
 
   const sendForm = async (e: FormEvent) => {
+    // debugger;
     e.preventDefault();
     changeLoadingLogData(true);
 
     const validation = singinFormValidation(form);
 
     if (validation.mail) {
-
-
 
       try {
         const res = await fetch('http://localhost:3001/login', {
@@ -52,13 +49,18 @@ export const SignInForm = () => {
 
         const data: UserLogInRes = await res.json();
 
-        if (!data.id) {
-          setValidationError(true);
+        const sessionToken = data.sessionToken;
+        const jwt = data.sessionToken;
+
+        if (data.message) {
+          setServerMessage(data.message)
         }
-        else if (typeof data.mail === 'string') {
+        else {
           changeUserLogged(true);
-          changeUserName(data.mail)
+          changeUserName(form.mail)
         }
+      } catch (err) {
+        throw new Error()
       }
       finally {
         changeLoadingLogData(false);
@@ -104,23 +106,16 @@ export const SignInForm = () => {
               value={form.password}
               onChange={change}
             />
-            {validationError &&
+            {serverMessage &&
               <div className="form-group__validation">
-                <RiCloseLine className="xBtn--validation" onClick={() => setValidationError(false)} />
-                <span> Incorrect mail or password</span>
-                <a className="button">Forgot password</a>
+                <RiCloseLine className="xBtn--validation" onClick={() => setServerMessage("")} />
+                <span> {serverMessage}</span>
+                <a href="/" className="button">Forgot password</a>
               </div>
             }
           </div>
         </div>
         <button className="button button--primary full-width" type="submit">Sign In</button>
-        {serverMessage &&
-          <div className="form-group__validation--server">
-
-            <span> {serverMessage}</span>
-            <button className="button button--primary full-width" onClick={() => setServerMessage(null)}>OK</button>
-          </div>
-        }
       </form>
     </>
   )

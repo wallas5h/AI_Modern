@@ -28,6 +28,8 @@ export interface UserLog {
 export type UserLogInReq = Omit<UserLog, 'id'>
 
 export interface UserLogInRes {
-  id: string | null
-  mail: string | null
+  id?: string | null
+  sessionToken?: string | null
+  refreshToken?: string | null
+  message?: string
 }
