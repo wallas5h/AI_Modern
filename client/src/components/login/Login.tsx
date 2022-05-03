@@ -19,6 +19,7 @@ export const Login = () => {
   const { isUserLogged, loginVisible, loginMode, changeLoginMode } = context;
 
   const [loading, setLoading] = useState<boolean>(false);
+  const [resetPasword, setResetPassword] = useState<boolean>(false);
   const [serverSignupMessage, setServerSignupMessage] = useState<string | null>(null);
   const [serverSigninMessage, setServerSigninMessage] = useState<string | null>(null)
 
@@ -26,6 +27,10 @@ export const Login = () => {
 
   const changeLoadingLogData = (value: boolean) => {
     setLoading(value)
+  }
+
+  const changeResetPassword = (value: boolean) => {
+    setResetPassword(value)
   }
 
   if (!loginVisible) {
@@ -39,7 +44,9 @@ export const Login = () => {
       serverSignupMessage,
       setServerSignupMessage,
       serverSigninMessage,
-      setServerSigninMessage
+      setServerSigninMessage,
+      resetPasword,
+      changeResetPassword
     }}>
       <div className="gpt__login-wrapper">
         <LoginComponent />

@@ -26,6 +26,7 @@ export interface UserLog {
 }
 
 export type UserLogInReq = Omit<UserLog, 'id'>
+export type UserResetPasswordReq = Omit<UserLog, 'id' | 'password'>
 
 export interface UserLogInRes {
   id?: string | null

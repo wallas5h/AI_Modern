@@ -2,6 +2,7 @@ require('dotenv').config();
 import * as cors from 'cors';
 import * as express from "express";
 import "express-async-errors";
+import { accountRouter } from './routers/accountRouter';
 import { homeRouter } from './routers/homeRouter';
 import { loginRouter } from './routers/loginRouter';
 import { registerRouter } from './routers/registerRouter';
@@ -25,7 +26,8 @@ app.use(express.json())
 
 app.use('/', homeRouter);
 app.use('/login', loginRouter);
-app.use('/register', registerRouter)
+app.use('/register', registerRouter);
+app.use('/account', accountRouter);
 
 app.get('/terms', (req, res) => {
   res.send('terms of service')

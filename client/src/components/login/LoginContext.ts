@@ -10,6 +10,9 @@ interface loginContextType {
   serverSigninMessage: string | null,
   setServerSigninMessage: (value: string | null) => void
 
+  resetPasword: boolean,
+  changeResetPassword: (value: boolean) => void
+
 }
 
 export const LoginContext = React.createContext<loginContextType>({
@@ -21,4 +24,7 @@ export const LoginContext = React.createContext<loginContextType>({
 
   serverSigninMessage: '',
   setServerSigninMessage: () => { },
+
+  resetPasword: false,
+  changeResetPassword: () => { },
 });

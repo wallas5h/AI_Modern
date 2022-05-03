@@ -4,6 +4,7 @@ import { AppContext } from './../../AppContext';
 import { LoginTypes } from "./Login";
 import { LoginContext } from './LoginContext';
 import { LoginForm } from "./LoginForm";
+import { ResetPassword } from './ResetPassword';
 import './sass/_loginComponent.scss';
 import { Spinner } from './Spinner';
 
@@ -14,9 +15,38 @@ export const LoginComponent = () => {
   const { changeLoginVisible } = context;
 
   const loginContext = React.useContext(LoginContext);
-  const { loadingLogData } = loginContext
+  const { loadingLogData, resetPasword, changeResetPassword, setServerSigninMessage } = loginContext;
 
+  const handleCloseLogWindow = () => {
+    changeLoginVisible(false);
+    changeResetPassword(false);
+    setServerSigninMessage(null)
+  }
+
+  return (
+    <>
+      <div className='form-block-wrapper '></div>
+
+      <section className='form-block '>
+        <div className="btnComponent">
+          <RiCloseLine color='#fff' size={42} className="xBtn" onClick={handleCloseLogWindow} />
+        </div>
+
+        {resetPasword ? <ResetPassword /> : <FormBlockHeader />}
+
+      </section>
+    </>
+  )
+}
+
+
+const FormBlockHeader = () => {
+
+  const context = React.useContext(AppContext);
   const { loginMode, changeLoginMode } = context;
+
+  const loginContext = React.useContext(LoginContext);
+  const { loadingLogData } = loginContext
 
   const toggleChangeMode = () => {
     if (loginMode === LoginTypes.SIGNUP) {
@@ -30,26 +60,19 @@ export const LoginComponent = () => {
 
   return (
     <>
-      <div className='form-block-wrapper '></div>
+      <header className="form-block__header">
 
-      <section className='form-block '>
-        <div className="btnComponent">
-          <RiCloseLine color='#fff' size={42} className="xBtn" onClick={() => changeLoginVisible(false)} />
-        </div>
+        {loadingLogData ?
+          <Spinner />
+          :
+          <div>
+            <h1>{loginMode === LoginTypes.SIGNIN ? 'Sign in!' : 'Sign up!'}</h1>
+            < ToggleInput loginMode={loginMode} toggleChangeMode={toggleChangeMode} />
+            <LoginForm />
+          </div>
+        }
 
-        <header className="form-block__header">
-
-          {loadingLogData ?
-            <Spinner />
-            :
-            <div>
-              <h1>{loginMode === LoginTypes.SIGNIN ? 'Sign in!' : 'Sign up!'}</h1>
-              < ToggleInput loginMode={loginMode} toggleChangeMode={toggleChangeMode} />
-              <LoginForm />
-            </div>
-          }
-        </header>
-      </section>
+      </header>
     </>
   )
 }

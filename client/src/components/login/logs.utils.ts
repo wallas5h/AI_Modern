@@ -1,5 +1,5 @@
 
-import { UserLogInReq, UserRegisterReq } from 'types';
+import { UserLogInReq, UserRegisterReq, UserResetPasswordReq } from 'types';
 
 export interface UserRegisterForm extends UserRegisterReq {
   repeat: string
@@ -13,7 +13,7 @@ export const messagesValidation = {
   terms__incorect: 'Don\'t accepted terms of service'
 }
 
-export const singinFormValidation = (form: UserLogInReq) => {
+export const singinFormValidation = (form: UserLogInReq | UserResetPasswordReq) => {
 
   let mail = false;
 
