@@ -7,8 +7,12 @@ import './sass/_loginForm.scss';
 
 export const SigninFormValidationComponent = () => {
 
-  const loginContext = React.useContext(LoginContext);
-  const { serverSigninMessage, setServerSigninMessage, changeResetPassword } = loginContext
+  const { serverSigninMessage, setServerSigninMessage, changeResetPassword } = React.useContext(LoginContext);
+
+  const handleForgotPwd = () => {
+    changeResetPassword(true);
+    setServerSigninMessage("");
+  }
 
   return (
     <>
@@ -16,7 +20,7 @@ export const SigninFormValidationComponent = () => {
         <RiCloseLine className="xBtn--validation" onClick={() => setServerSigninMessage("")} />
         <span> {serverSigninMessage}</span>
 
-        <div onClick={() => changeResetPassword(true)} className="button">Forgot password</div>
+        <div onClick={handleForgotPwd} className="button">Forgot password</div>
       </div>
     </>
   )

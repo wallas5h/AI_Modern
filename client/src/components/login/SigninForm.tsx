@@ -3,9 +3,9 @@ import React, { ChangeEvent, FormEvent, useState } from "react";
 import { UserLogInReq, UserLogInRes } from 'types';
 import { AppContext } from './../../AppContext';
 import { LoginContext } from "./LoginContext";
-import { messagesValidation as messages, singinFormValidation } from "./logs.utils";
+import { messagesValidation as messages, singinFunctionFormValidation } from "./logs.utils";
 import './sass/_loginForm.scss';
-import { SigninFormValidationComponent } from "./SigninFormValidConponent";
+import { SigninFormValidationComponent } from "./SigninFormValidComponent";
 
 export const SignInForm = () => {
 
@@ -24,6 +24,8 @@ export const SignInForm = () => {
     password: ''
   });
 
+  //mailValidation=true show component with error
+
   const [mailValidation, setMailValidation] = useState<boolean>(false)
 
   const change = (e: ChangeEvent<HTMLInputElement>) => {
@@ -38,10 +40,10 @@ export const SignInForm = () => {
     e.preventDefault();
     changeLoadingLogData(true);
 
-    const validation = singinFormValidation(form);
+    const validation = singinFunctionFormValidation(form);
 
     if (!validation.mail) {
-      setMailValidation(!validation.mail);
+      setMailValidation(true);
       changeLoadingLogData(false);
       return;
     }

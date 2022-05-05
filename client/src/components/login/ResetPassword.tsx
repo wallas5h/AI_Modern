@@ -1,16 +1,24 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
+import { UserLogInRes } from "types";
 import { LoginContext } from "./LoginContext";
-import { singinFormValidation } from "./logs.utils";
+import { generateQueryString, singinFunctionFormValidation } from "./logs.utils";
+import { SingupFormValidation } from "./SignupForm";
 
 
 export const ResetPassword = () => {
 
   const loginContext = React.useContext(LoginContext);
-  const { changeLoadingLogData, resetPasword, changeResetPassword } = loginContext;
+  const { changeLoadingLogData, resetPasword, changeResetPassword, serverSigninMessage: serverMessage,
+    setServerSigninMessage: setServerMessage, } = loginContext;
 
   const [form, setForm] = useState({
     mail: ''
-  })
+  });
+
+  //mailValidation=true show component with error
+
+  const [mailValidation, setMailValidation] = useState<boolean>(false);
+  const [textValidation, setTextValidation] = useState<string | null>(null)
 
   const change = (e: ChangeEvent<HTMLInputElement>) => {
     setForm(prev => ({
@@ -19,11 +27,43 @@ export const ResetPassword = () => {
     }))
   }
 
-  const sendForm = (e: FormEvent) => {
+  const sendForm = async (e: FormEvent) => {
     e.preventDefault();
-    changeLoadingLogData(true);
 
-    const validation = singinFormValidation(form);
+    const clientValidation = singinFunctionFormValidation(form);
+
+    if (!clientValidation.mail) {
+      setMailValidation(true);
+      setTextValidation('Check your e-mail, entered e-mail do not meet the e-mail standards');
+      return
+    }
+
+    try {
+      changeLoadingLogData(true);
+
+      const res = await fetch(`http://localhost:3001/account/reset/password/email/?${generateQueryString(form)}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(form)
+      })
+
+      const data: UserLogInRes = await res.json();
+
+      data.message && setServerMessage(data.message)
+
+    } catch (err) {
+      throw new Error()
+    }
+    finally {
+      changeLoadingLogData(false);
+      setForm({
+        mail: '',
+      })
+    }
+
+
   }
 
   return (
@@ -44,17 +84,21 @@ export const ResetPassword = () => {
                 value={form.mail}
                 onChange={change}
               />
-              {/* {mailValidation &&
-              <div className="form-group__validation form-group__validation--signup">
-                <span> {messages.mail__incorect}</span>
-              </div>
-            } */}
+              {mailValidation &&
+                <div className="form-group__validation form-group__validation--signup">
+                  <span> {textValidation}</span>
+                </div>
+              }
 
-              {/* {serverMessage && <SigninFormValidationComponent />} */}
 
             </div>
           </div>
           <button className="button button--primary full-width" type="submit">Reset password</button>
+
+          {serverMessage &&
+            <SingupFormValidation serverMessage={serverMessage} setServerMessage={setServerMessage} />
+          }
+
         </form>
       </header>
     </>)

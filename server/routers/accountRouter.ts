@@ -31,6 +31,33 @@ export const accountRouter = Router()
     }
   })
 
-  .post('/reset/password/email/:mail', (req, res) => {
+  .post('/reset/password/email/', async (req, res) => {
+
+    const mail = String(req.query.mail);
+
+    if (!req.query.mail) {
+      return res
+        .json({
+          message: `Sorry, invalid request `
+        })
+        .status(404)
+    }
+
+    const user = await UserRepository.findOneByMail(mail);
+
+    if (!user) {
+      return res
+        .json({
+          message: `Sorry, not found user e-mail: ${mail} `
+        })
+        .status(404)
+    }
+
+    return res
+      .json({
+        message: `Check your e-mail box! Look for an E-mail from GPT-3 to reset your password. `
+      })
+      .status(200)
+
 
   })

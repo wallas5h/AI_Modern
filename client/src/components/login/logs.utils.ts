@@ -1,6 +1,13 @@
 
 import { UserLogInReq, UserRegisterReq, UserResetPasswordReq } from 'types';
 
+
+
+export const generateQueryString = (params: any): string => {
+  const qs = new URLSearchParams(params);
+  return `${qs}`.replace(/\+/g, '%20');
+}
+
 export interface UserRegisterForm extends UserRegisterReq {
   repeat: string
 }
@@ -13,7 +20,7 @@ export const messagesValidation = {
   terms__incorect: 'Don\'t accepted terms of service'
 }
 
-export const singinFormValidation = (form: UserLogInReq | UserResetPasswordReq) => {
+export const singinFunctionFormValidation = (form: UserLogInReq | UserResetPasswordReq) => {
 
   let mail = false;
 
@@ -35,7 +42,7 @@ export const singinFormValidation = (form: UserLogInReq | UserResetPasswordReq) 
   return { mail }
 }
 
-export const singupFormValidation = (form: UserRegisterForm) => {
+export const singupFunctionFormValidation = (form: UserRegisterForm) => {
   let firstName = false;
   let lastName = false;
   let mail = false;

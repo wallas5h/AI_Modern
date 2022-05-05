@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import { UserRegisterRes } from 'types';
 import { LoginContext } from "./LoginContext";
-import { messagesValidation as messages, singupFormValidation as formValidation } from "./logs.utils";
+import { messagesValidation as messages, singupFunctionFormValidation as formValidation } from "./logs.utils";
 import './sass/_loginForm.scss';
 
 export const SignUpForm = () => {
@@ -199,13 +199,25 @@ export const SignUpForm = () => {
         </div>
         <button className="button button--primary full-width" type="submit">Sign Up</button>
         {serverMessage &&
-          <div className="form-group__validation--server">
-
-            <span> {serverMessage}</span>
-            <button className="button button--primary full-width" onClick={() => setServerMessage(null)}>OK</button>
-          </div>
+          <SingupFormValidation serverMessage={serverMessage} setServerMessage={setServerMessage} />
         }
       </form>
     </>
+  )
+}
+
+interface Props {
+  serverMessage: string | null;
+  setServerMessage: (value: string | null) => void
+}
+
+export const SingupFormValidation = ({ serverMessage, setServerMessage }: Props) => {
+
+  return (
+    <div className="form-group__validation--server">
+
+      <span> {serverMessage}</span>
+      <button className="button button--primary full-width" onClick={() => setServerMessage(null)}>OK</button>
+    </div>
   )
 }
