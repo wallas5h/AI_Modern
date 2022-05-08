@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { Feature } from '../../containers';
+import { educationText, knowledgebaseText, textChatbots, textFeature } from './whatGPTTexts';
 import './_whatgpt3.scss';
-
-const textFeature = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, omnis! Et eveniet necessitatibus commodi. Quidem ipsa fugit quibusdam cumque ex!'
 
 export const WhatGPT3 = () => {
   return (
@@ -17,9 +16,9 @@ export const WhatGPT3 = () => {
         <p>Expolore The Library</p>
       </div>
       <div className="gpt3__whatgpt3-container">
-        <Feature title={'Chatbots'} text={textFeature} />
-        <Feature title={'Knowledgebase'} text={textFeature} />
-        <Feature title={'Education'} text={textFeature} />
+        <Feature title={'Chatbots'} text={textChatbots} />
+        <Feature title={'Knowledgebase'} text={knowledgebaseText} />
+        <Feature title={'Education'} text={educationText} />
       </div>
 
     </div>

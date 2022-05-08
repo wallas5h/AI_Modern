@@ -62,13 +62,13 @@ function App() {
             <Header />
           </div>
           <Login />
-          <Brand />
           <WhatGPT3 />
           <Possibility />
           <Features />
           <CTA />
           <Blog />
 
+          <Brand />
           <Footer />
         </div>
       </AppContext.Provider>

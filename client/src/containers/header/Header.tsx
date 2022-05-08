@@ -9,10 +9,10 @@ export const Header = () => {
     <div className="gpt3__header section__padding" id="home">
       <div className="gpt3__header-content">
         <h1>
-          Let's try to build something amazing with AI
+          GPT-3 — The Largest Neural Network Ever Created
         </h1>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis ad quia quaerat et ea quis inventore enim minima animi nihil.
+          AI will have a strong impact on the world. Are you ready for this?
         </p>
         <div className="gpt3__header-content__input">
           <input type="email" name="" id="" placeholder='Your email adress' />
@@ -20,12 +20,12 @@ export const Header = () => {
         </div>
         <div className="gpt3__header-content__people">
           <img src={people} alt="people" />
-          <p>Over 1 600 people join to us</p>
+          <p>Over 1 600 people use our services</p>
         </div>
 
       </div>
       <div className="gpt3__header-image">
-        <img src={ai} alt="" />
+        <img src={ai} alt="AI face" />
       </div>
     </div>
   )
