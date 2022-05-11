@@ -14,10 +14,6 @@ export const Header = () => {
         <p>
           AI will have a strong impact on the world. Are you ready for this?
         </p>
-        <div className="gpt3__header-content__input">
-          <input type="email" name="" id="" placeholder='Your email adress' />
-          <button type="submit">Get Started</button>
-        </div>
         <div className="gpt3__header-content__people">
           <img src={people} alt="people" />
           <p>Over 1 600 people use our services</p>
