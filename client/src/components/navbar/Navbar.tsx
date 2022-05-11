@@ -26,7 +26,7 @@ const Menu = ({ ToggleMenu }: Props) => {
         <p>Case Studies</p>
       </Link>
       <Link to="blog" smooth={true} offset={-80} duration={200} onClick={ToggleMenu} >
-        <p>Library</p>
+        <p>Blog</p>
       </Link>
     </>
   )
