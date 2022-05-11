@@ -10,9 +10,6 @@ export const Footer = () => {
       <div className="gpt3__footer-heading">
         <h1 className="gradient-text">Make a new step in to the future</h1>
       </div>
-      <div className="gpt3__footer-button">
-        <p>Get Access</p>
-      </div>
       <div className="gpt3__footer-links">
         <div className="gpt3__footer-links-logo">
           <img src={Logo} alt="Logo" />
