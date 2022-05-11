@@ -4,10 +4,11 @@ import './_article.scss';
 interface Props {
   imgUrl: string,
   date: string,
-  title: string
+  title: string,
+  click: string
 }
 
-export const Article = ({ imgUrl, date, title }: Props) => {
+export const Article = ({ imgUrl, date, title, click }: Props) => {
   return (
     <div className="blog__article">
       <div className="blog__article-image">
@@ -16,7 +17,7 @@ export const Article = ({ imgUrl, date, title }: Props) => {
       <div className="blog__article-content">
         <p>{date}</p>
         <h3>{title}</h3>
-        <p>Read Full Article</p>
+        <a href={click}>Read more</a>
       </div>
     </div>
   )

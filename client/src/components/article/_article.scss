@@ -1,6 +1,7 @@
 @import '../../sass/index.scss';
 @import '../../sass/App.scss';
 
+
 .blog__article {
   display: flex;
   flex-direction: column;
@@ -10,6 +11,8 @@
 
   min-width: 200px;
   height: 100%;
+
+  overflow: hidden;
 
   &-image {
     img {
@@ -21,12 +24,12 @@
     display: flex;
     flex-grow: 1;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: flex-start;
     margin: 0 2rem;
 
     h3 {
-      font-size: 20px;
+      font-size: 18px;
       line-height: 30px;
 
       margin: 0.5rem 0;
@@ -45,6 +48,21 @@
         cursor: pointer;
       }
 
+    }
+
+    a {
+      padding: 5px 20px;
+      background-color: darken($color: $color-blog, $amount: 5%);
+      font-size: 12px;
+      line-height: 24px;
+      margin: 1rem 0;
+      margin-bottom: 1rem;
+      cursor: pointer;
+      font-weight: 600;
+
+      &:hover {
+        background-color: lighten($color: $color-blog, $amount: 10%);
+      }
     }
   }
 }
