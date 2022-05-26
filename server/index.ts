@@ -1,6 +1,6 @@
 require('dotenv').config();
 import cors from 'cors';
-import express from "express";
+import express, { Router } from "express";
 import "express-async-errors";
 import rateLimit from 'express-rate-limit';
 import { config } from './config/config';
@@ -34,12 +34,19 @@ app.use(limiter);
 
 app.use(express.json());
 
-app.use('/', homeRouter);
-app.use('/login', loginRouter);
-app.use('/register', registerRouter);
-app.use('/account', accountRouter);
+//routing
 
-app.get('/terms', (req, res) => {
+const router = Router();
+
+router.use('/', homeRouter);
+router.use('/login', loginRouter);
+router.use('/register', registerRouter);
+router.use('/account', accountRouter);
+
+app.use('/api', router);
+
+
+app.get('/api/terms', (req, res) => {
   res.send('terms of service')
 });
 
