@@ -1,6 +1,6 @@
 require('dotenv').config();
-import * as cors from 'cors';
-import * as express from "express";
+import cors from 'cors';
+import express from "express";
 import "express-async-errors";
 import { accountRouter } from './routers/accountRouter';
 import { homeRouter } from './routers/homeRouter';
