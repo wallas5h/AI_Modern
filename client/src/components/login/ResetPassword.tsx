@@ -1,5 +1,6 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import { UserLogInRes } from "types";
+import { apiUrl } from "../../config/api";
 import { LoginContext } from "./LoginContext";
 import { generateQueryString, singinFunctionFormValidation } from "./logs.utils";
 import { SingupFormValidation } from "./SignupForm";
@@ -41,7 +42,7 @@ export const ResetPassword = () => {
     try {
       changeLoadingLogData(true);
 
-      const res = await fetch(`http://localhost:3001/account/reset/password/email/?${generateQueryString(form)}`, {
+      const res = await fetch(`${apiUrl}/account/reset/password/email/?${generateQueryString(form)}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
