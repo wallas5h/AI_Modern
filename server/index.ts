@@ -2,6 +2,7 @@ require('dotenv').config();
 import cors from 'cors';
 import express from "express";
 import "express-async-errors";
+import rateLimit from 'express-rate-limit';
 import { accountRouter } from './routers/accountRouter';
 import { homeRouter } from './routers/homeRouter';
 import { loginRouter } from './routers/loginRouter';
@@ -17,12 +18,20 @@ const corsOptions = {
   optionSuccessStatus: 200,
 }
 
+const limiter = rateLimit({
+  windowMs: 5 * 60 * 1000,
+  max: 100,
+})
+
+
 
 const app = express();
 
-app.use(cors(corsOptions))
+app.use(cors(corsOptions));
 
-app.use(express.json())
+app.use(limiter);
+
+app.use(express.json());
 
 app.use('/', homeRouter);
 app.use('/login', loginRouter);
@@ -31,7 +40,7 @@ app.use('/account', accountRouter);
 
 app.get('/terms', (req, res) => {
   res.send('terms of service')
-})
+});
 
 app.use(handleError);
 
@@ -41,13 +50,6 @@ app.use(function (req, res, next) {
 });
 
 
-// app.use(cors({
-//   origin: 'http://localhost:3000'
-// }))
-
-
-
-
-app.listen(PORT, () => {
+app.listen(3001, '0.0.0.0', () => {
   console.log('server started at http://localhost:' + PORT);
 });
