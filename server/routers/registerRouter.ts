@@ -48,7 +48,7 @@ registerRouter
       mail,
       password: passwordHash,
       refreshToken: null,
-      confirmed: false,  //true for tests, it should be null, value true after mail confirm.
+      confirmed: true,  //@TODO change to false after use Spring Boot Email
       terms
     })
 
@@ -56,7 +56,7 @@ registerRouter
 
     res.json({
       id: userId,
-      message: 'Thank you for registration! Look for an E-mail from GPT-3 to confirm your registration.'
+      message: 'Thank you for registration! Look for an E-mail from GPT-3 to confirm your registration. ( ** This is coming soon, now login without email confirmation **)'
     }) as UserRegisterRes;
 
   })
