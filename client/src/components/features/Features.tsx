@@ -5,7 +5,7 @@ import './_features.scss'
 const featuresData = [
   {
     title: 'New Possibilities',
-    text: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos, commodi.'
+    text: 'Over 175 billion parameters determining the relationships (100 times more than previous version).'
   },
   {
     title: 'New Experience',
@@ -16,7 +16,7 @@ const featuresData = [
     text: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos, commodi.'
   },
   {
-    title: 'Improving the reality',
+    title: 'Lower company costs ',
     text: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos, commodi.'
   },
 ]
