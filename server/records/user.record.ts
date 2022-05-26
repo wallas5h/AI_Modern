@@ -22,7 +22,7 @@ export class UserRecord implements UserRegister {
     this.mail = mail;
     this.password = password;
     this.terms = Boolean(terms);
-    this.confirmed = Boolean(confirmed) ?? false;
+    this.confirmed = Boolean(confirmed) ?? true;  // @TODO change to false after use Spring Boot Email Verification
     this.refreshToken = refreshToken ?? null;
   }
 }
