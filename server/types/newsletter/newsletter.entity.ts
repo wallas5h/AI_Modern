@@ -1,7 +1,6 @@
-import { ObjectId } from "mongodb"
 
 export interface NewsletterEntity {
-  _id?: ObjectId
+  _id?: string
   mail: string
 }
 
