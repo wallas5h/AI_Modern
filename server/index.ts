@@ -3,6 +3,7 @@ import cors from 'cors';
 import express from "express";
 import "express-async-errors";
 import rateLimit from 'express-rate-limit';
+import { config } from './config/config';
 import { accountRouter } from './routers/accountRouter';
 import { homeRouter } from './routers/homeRouter';
 import { loginRouter } from './routers/loginRouter';
@@ -13,7 +14,7 @@ import { handleError } from './utils/errors';
 const { PORT = 3001 } = process.env;
 
 const corsOptions = {
-  origin: 'http://localhost:3000',
+  origin: config.corsOrigin,
   credentials: true,
   optionSuccessStatus: 200,
 }
@@ -45,7 +46,7 @@ app.get('/terms', (req, res) => {
 app.use(handleError);
 
 app.use(function (req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.setHeader('Access-Control-Allow-Origin', config.corsOrigin,);
   next();
 });
 
