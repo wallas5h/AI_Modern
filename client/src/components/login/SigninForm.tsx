@@ -1,6 +1,7 @@
 
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import { UserLogInReq, UserLogInRes } from 'types';
+import { apiUrl } from "../../config/api";
 import { AppContext } from './../../AppContext';
 import { LoginContext } from "./LoginContext";
 import { messagesValidation as messages, singinFunctionFormValidation } from "./logs.utils";
@@ -49,7 +50,7 @@ export const SignInForm = () => {
     }
 
     try {
-      const res = await fetch('http://localhost:3001/login', {
+      const res = await fetch(`${apiUrl}/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

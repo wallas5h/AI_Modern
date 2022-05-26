@@ -55,7 +55,7 @@ export const accountRouter = Router()
 
     return res
       .json({
-        message: `Check your e-mail box! Look for an E-mail from GPT-3 to reset your password. `
+        message: `Check your e-mail box! Look for an E-mail from GPT-3 to reset your password. ( ** Coming soon**) `
       })
       .status(200)
 

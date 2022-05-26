@@ -1,7 +1,9 @@
 require('dotenv').config();
-import * as cors from 'cors';
-import * as express from "express";
+import cors from 'cors';
+import express, { Router } from "express";
 import "express-async-errors";
+import rateLimit from 'express-rate-limit';
+import { config } from './config/config';
 import { accountRouter } from './routers/accountRouter';
 import { homeRouter } from './routers/homeRouter';
 import { loginRouter } from './routers/loginRouter';
@@ -12,42 +14,50 @@ import { handleError } from './utils/errors';
 const { PORT = 3001 } = process.env;
 
 const corsOptions = {
-  origin: 'http://localhost:3000',
+  origin: config.corsOrigin,
   credentials: true,
   optionSuccessStatus: 200,
 }
 
+const limiter = rateLimit({
+  windowMs: 5 * 60 * 1000,
+  max: 100,
+})
+
+
 
 const app = express();
 
-app.use(cors(corsOptions))
+app.use(cors(corsOptions));
 
-app.use(express.json())
+app.use(limiter);
 
-app.use('/', homeRouter);
-app.use('/login', loginRouter);
-app.use('/register', registerRouter);
-app.use('/account', accountRouter);
+app.use(express.json());
 
-app.get('/terms', (req, res) => {
+//routing
+
+const router = Router();
+
+router.use('/', homeRouter);
+router.use('/login', loginRouter);
+router.use('/register', registerRouter);
+router.use('/account', accountRouter);
+
+app.use('/api', router);
+
+
+app.get('/api/terms', (req, res) => {
   res.send('terms of service')
-})
+});
 
 app.use(handleError);
 
 app.use(function (req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.setHeader('Access-Control-Allow-Origin', config.corsOrigin,);
   next();
 });
 
 
-// app.use(cors({
-//   origin: 'http://localhost:3000'
-// }))
-
-
-
-
-app.listen(PORT, () => {
+app.listen(3001, '0.0.0.0', () => {
   console.log('server started at http://localhost:' + PORT);
 });

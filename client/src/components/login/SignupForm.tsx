@@ -1,5 +1,6 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import { UserRegisterRes } from 'types';
+import { apiUrl } from "../../config/api";
 import { LoginContext } from "./LoginContext";
 import { messagesValidation as messages, singupFunctionFormValidation as formValidation } from "./logs.utils";
 import './sass/_loginForm.scss';
@@ -52,7 +53,7 @@ export const SignUpForm = () => {
 
     if (validation.correct) {
       try {
-        const res = await fetch('http://localhost:3001/register', {
+        const res = await fetch(`${apiUrl}/register`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -188,7 +189,7 @@ export const SignUpForm = () => {
                 required
                 checked={form.terms}
                 onChange={change}
-              /> I agree to the <a href="http://localhost:3001/terms">terms of service</a>
+              /> I agree to the <a href={`${apiUrl}/terms`}>terms of service</a>
             </label>
             {validationErrors.terms &&
               <div className="form-group__validation form-group__validation--signup">
