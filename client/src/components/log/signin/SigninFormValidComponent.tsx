@@ -1,13 +1,13 @@
 import React from "react";
 import { RiCloseLine } from 'react-icons/ri';
-import { LoginContext } from "./LoginContext";
-import './sass/_loginForm.scss';
+import '../sass/_loginForm.scss';
+import { LogContext } from "./LogContext";
 
 
 
 export const SigninFormValidationComponent = () => {
 
-  const { serverSigninMessage, setServerSigninMessage, changeResetPassword } = React.useContext(LoginContext);
+  const { serverSigninMessage, setServerSigninMessage, changeResetPassword } = React.useContext(LogContext);
 
   const handleForgotPwd = () => {
     changeResetPassword(true);

@@ -1,16 +1,19 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import { UserLogInRes } from "types";
-import { apiUrl } from "../../config/api";
-import { LoginContext } from "./LoginContext";
-import { generateQueryString, singinFunctionFormValidation } from "./logs.utils";
-import { SingupFormValidation } from "./SignupForm";
+import { apiUrl } from "../../../config/api";
+import { generateQueryString, singinFunctionFormValidation } from "../../../utils/logs.utils";
+import { ServerFormValidationComponent } from "../serverValidation/ServerFormValidComponent";
+import { LogContext } from "../signin/LogContext";
+
+
+
 
 
 export const ResetPassword = () => {
 
-  const loginContext = React.useContext(LoginContext);
-  const { changeLoadingLogData, resetPasword, changeResetPassword, serverSigninMessage: serverMessage,
-    setServerSigninMessage: setServerMessage, } = loginContext;
+  const loginContext = React.useContext(LogContext);
+  const { changeLoadingLogData, resetPasword, changeResetPassword, serverSigninMessage,
+    setServerSigninMessage, } = loginContext;
 
   const [form, setForm] = useState({
     mail: ''
@@ -52,7 +55,7 @@ export const ResetPassword = () => {
 
       const data: UserLogInRes = await res.json();
 
-      data.message && setServerMessage(data.message)
+      data.message && setServerSigninMessage(data.message)
 
     } catch (err) {
       throw new Error()
@@ -96,8 +99,8 @@ export const ResetPassword = () => {
           </div>
           <button className="button button--primary full-width" type="submit">Reset password</button>
 
-          {serverMessage &&
-            <SingupFormValidation serverMessage={serverMessage} setServerMessage={setServerMessage} />
+          {serverSigninMessage &&
+            <ServerFormValidationComponent serverMessage={serverSigninMessage} setServerMessage={setServerSigninMessage} />
           }
 
         </form>
