@@ -1,21 +1,21 @@
 import React from 'react';
 import { RiCloseLine } from 'react-icons/ri';
-import { AppContext } from './../../AppContext';
-import { LoginTypes } from "./Login";
-import { LoginContext } from './LoginContext';
+import { AppContext } from '../../../AppContext';
+import { Spinner } from '../../spinner/Spinner';
+import { ResetPassword } from '../resetPassword/ResetPassword';
+import '../sass/_loginComponent.scss';
+import { LogContext } from './LogContext';
+import { LogTypes } from "./Login";
 import { LoginForm } from "./LoginForm";
-import { ResetPassword } from './ResetPassword';
-import './sass/_loginComponent.scss';
-import { Spinner } from './Spinner';
+
+
 
 
 export const LoginComponent = () => {
 
-  const context = React.useContext(AppContext);
-  const { changeLoginVisible } = context;
+  const { changeLoginVisible } = React.useContext(AppContext);
 
-  const loginContext = React.useContext(LoginContext);
-  const { loadingLogData, resetPasword, changeResetPassword, setServerSigninMessage } = loginContext;
+  const { resetPasword, changeResetPassword, setServerSigninMessage } = React.useContext(LogContext);
 
   const handleCloseLogWindow = () => {
     changeLoginVisible(false);
@@ -45,15 +45,15 @@ const FormBlockHeader = () => {
   const context = React.useContext(AppContext);
   const { loginMode, changeLoginMode } = context;
 
-  const loginContext = React.useContext(LoginContext);
+  const loginContext = React.useContext(LogContext);
   const { loadingLogData } = loginContext
 
   const toggleChangeMode = () => {
-    if (loginMode === LoginTypes.SIGNUP) {
-      changeLoginMode(LoginTypes.SIGNIN)
+    if (loginMode === LogTypes.SIGNUP) {
+      changeLoginMode(LogTypes.SIGNIN)
     }
     else {
-      changeLoginMode(LoginTypes.SIGNUP)
+      changeLoginMode(LogTypes.SIGNUP)
     }
 
   }
@@ -66,7 +66,7 @@ const FormBlockHeader = () => {
           <Spinner />
           :
           <div>
-            <h1>{loginMode === LoginTypes.SIGNIN ? 'Sign in!' : 'Sign up!'}</h1>
+            <h1>{loginMode === LogTypes.SIGNIN ? 'Sign in!' : 'Sign up!'}</h1>
             < ToggleInput loginMode={loginMode} toggleChangeMode={toggleChangeMode} />
             <LoginForm />
           </div>
@@ -79,7 +79,7 @@ const FormBlockHeader = () => {
 
 
 interface toggleProps {
-  loginMode: LoginTypes
+  loginMode: LogTypes
   toggleChangeMode: () => void
 }
 
@@ -89,7 +89,7 @@ const ToggleInput = ({ loginMode, toggleChangeMode }: toggleProps) => {
   return (
     <>
       <div className="form-block__toggle-block">
-        <span>{loginMode === LoginTypes.SIGNIN ? 'Don\'t' : 'Already'} have an account? Click here </span>
+        <span>{loginMode === LogTypes.SIGNIN ? 'Don\'t' : 'Already'} have an account? Click here </span>
         <input className="input--toggler" id="form-toggler" type="checkbox" onChange={toggleChangeMode} />
         <label htmlFor="form-toggler"></label>
 

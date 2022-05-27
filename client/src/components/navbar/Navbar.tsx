@@ -2,9 +2,10 @@ import * as React from 'react';
 import { RiCloseLine, RiMenu3Line } from 'react-icons/ri';
 import { Link } from 'react-scroll';
 import logo from '../../assets/logo.svg';
-import { LoginTypes } from '../login/Login';
+import { LogTypes } from '../log/signin/Login';
 import { AppContext } from './../../AppContext';
 import './_navbar.scss';
+
 
 interface Props {
   ToggleMenu: () => void
@@ -42,13 +43,13 @@ export const Navbar = () => {
 
   const handleSigninClick = () => {
     changeLoginVisible(true);
-    changeLoginMode(LoginTypes.SIGNIN);
+    changeLoginMode(LogTypes.SIGNIN);
     setToggleMenu(false)
   }
 
   const handleSignupClick = () => {
     changeLoginVisible(true);
-    changeLoginMode(LoginTypes.SIGNUP);
+    changeLoginMode(LogTypes.SIGNUP);
     setToggleMenu(false)
   }
 

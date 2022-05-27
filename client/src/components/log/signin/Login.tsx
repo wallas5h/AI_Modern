@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { AppContext } from './../../AppContext';
+import { AppContext } from '../../../AppContext';
+import '../sass/_login.scss';
+import { LogContext } from "./LogContext";
 import { LoginComponent } from "./LoginComponent";
-import { LoginContext } from "./LoginContext";
-import './sass/_login.scss';
 
 
-export const enum LoginTypes {
+export const enum LogTypes {
   SIGNIN = 'signin',
   SIGNUP = 'signup'
 
@@ -38,7 +38,7 @@ export const Login = () => {
   }
 
   return (
-    <LoginContext.Provider value={{
+    <LogContext.Provider value={{
       loadingLogData: loading,
       changeLoadingLogData,
       serverSignupMessage,
@@ -51,6 +51,6 @@ export const Login = () => {
       <div className="gpt__login-wrapper">
         <LoginComponent />
       </div>
-    </LoginContext.Provider>
+    </LogContext.Provider>
   )
 }

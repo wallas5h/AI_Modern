@@ -1,4 +1,4 @@
-import './sass/_spinner.scss';
+import './_spinner.scss';
 
 
 export const Spinner = () => {

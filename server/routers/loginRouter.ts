@@ -53,7 +53,6 @@ loginRouter
     res.json({
       id: user.id,
       sessionToken,
-      refreshToken,
       message: 'Sigin succesfull!'
     }) as unknown as UserLogInRes
 

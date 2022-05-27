@@ -1,16 +1,17 @@
 
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import { UserLogInReq, UserLogInRes } from 'types';
-import { apiUrl } from "../../config/api";
-import { AppContext } from './../../AppContext';
-import { LoginContext } from "./LoginContext";
-import { messagesValidation as messages, singinFunctionFormValidation } from "./logs.utils";
-import './sass/_loginForm.scss';
+import { AppContext } from '../../../AppContext';
+import { apiUrl } from "../../../config/api";
+import { messagesValidation as messages, singinFunctionFormValidation } from "../../../utils/logs.utils";
+import '../sass/_loginForm.scss';
+import { LogContext } from "./LogContext";
 import { SigninFormValidationComponent } from "./SigninFormValidComponent";
+
 
 export const SignInForm = () => {
 
-  const loginContext = React.useContext(LoginContext);
+  const loginContext = React.useContext(LogContext);
   const { changeLoadingLogData,
     serverSigninMessage: serverMessage,
     setServerSigninMessage: setServerMessage,
