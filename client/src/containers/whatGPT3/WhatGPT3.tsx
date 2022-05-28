@@ -12,7 +12,7 @@ export const WhatGPT3 = () => {
           text={textFeature} />
       </div>
       <div className="gpt3__whatgpt3-heading">
-        <h1 className="gradient-text">The possibilities are beyond your imagination</h1>
+        <h1 className="gradient-text">Imagination creates reality</h1>
         <p>Expolore The Library</p>
       </div>
       <div className="gpt3__whatgpt3-container">

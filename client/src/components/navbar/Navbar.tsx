@@ -65,7 +65,7 @@ export const Navbar = () => {
           </div>
         </div>
         <div className="gpt__navbar-sign">
-          <p onClick={handleSigninClick}>Sign in</p>
+          <button onClick={handleSigninClick}>Sign in</button>
           <button onClick={handleSignupClick}>Sign up</button>
         </div>
         <div className="gpt__navbar-menu">
@@ -79,7 +79,7 @@ export const Navbar = () => {
               <div className="gpt__navbar-menu_container-links">
                 <Menu ToggleMenu={() => setToggleMenu(false)} />
                 <div className="gpt__navbar-menu_container-links-sign">
-                  <p onClick={handleSigninClick}>Sign in</p>
+                  <button onClick={handleSigninClick}>Sign in</button>
                   <button onClick={handleSignupClick}>Sign up</button>
                 </div>
               </div>

@@ -14,9 +14,10 @@
 }
 
 %button {
+  margin-right: 0.5rem;
   padding: 0.5rem 1rem;
 
-  background-color: #ff4820;
+  background-color: $color-button;
   border-radius: 5px;
   border: 0;
   outline: none;
@@ -26,6 +27,18 @@
   font-weight: 500;
   line-height: 25px;
   cursor: pointer;
+
+  &:hover {
+    background-color: darken($color: $color-button, $amount: 20%);
+  }
+
+  &:nth-child(1) {
+    background-color: darken($color: $color-text, $amount: 20%);
+
+    &:hover {
+      background-color: darken($color: $color-text, $amount: 40%);
+    }
+  }
 }
 
 
@@ -68,6 +81,15 @@
         @extend %paragraf;
       }
 
+      a {
+        cursor: pointer;
+        border-bottom: 1px solid transparent;
+
+        &:hover {
+          border-bottom: 1px solid #81AFDD;
+        }
+      }
+
       button {
         @extend %button;
       }
@@ -86,6 +108,7 @@
     button {
       @extend %button;
     }
+
   }
 }
 
@@ -93,6 +116,7 @@
   margin-left: 1rem;
   display: none;
   position: relative;
+
 
   &_container {
     display: flex;
@@ -114,15 +138,26 @@
     &-links-sign {
       display: none;
 
-
       button {
         @extend %button;
+        margin-right: 0;
+        padding: 0.25rem 1rem;
+      }
+
+      button:nth-child(1) {
+        margin-bottom: 0.5rem;
       }
     }
 
+
     p {
       margin: 1rem 0;
+      border-bottom: 1px solid transparent;
       cursor: pointer;
+
+      &:hover {
+        border-bottom: 1px solid #81AFDD;
+      }
     }
   }
 

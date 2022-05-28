@@ -37,31 +37,6 @@
     }
   }
 
-  &-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    margin-bottom: 5rem;
-
-    p {
-      border: 1px solid #fff;
-      box-sizing: border-box;
-      font-size: 18px;
-      line-height: 21px;
-      color: #fff;
-      word-spacing: 2px;
-
-      padding: 1rem 2rem;
-      cursor: pointer;
-      transition: 0.3s;
-
-      &:hover {
-        background: $gradient-bar;
-      }
-    }
-  }
-
   &-links {
     display: flex;
     flex-wrap: wrap;
@@ -98,8 +73,13 @@
       p {
         font-size: 14px;
         padding: 1rem 1rem 1rem 0;
-        // margin: 0.5rem 0;
         cursor: pointer;
+        transition: 0.3;
+
+        &:hover {
+          color: $color-text;
+          padding-left: 0.25rem;
+        }
       }
     }
   }
