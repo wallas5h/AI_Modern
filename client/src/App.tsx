@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { AppContext } from './AppContext';
 import { Brand, CTA, Features, Login, Navbar } from './components';
-import { LoginTypes } from './components/login/Login';
+import { LogTypes } from './components/log/signin/Login';
 import { Blog, Footer, Header, Possibility, WhatGPT3 } from './containers';
 import './sass/App.scss';
+
 
 
 
@@ -12,7 +13,7 @@ function App() {
   const [loginVisible, setLoginVisible] = useState<boolean>(false);
   const [isUserLogged, setIsUserLogged] = useState<boolean>(false);
 
-  const [loginMode, setLoginMode] = useState(LoginTypes.SIGNIN);
+  const [loginMode, setLoginMode] = useState(LogTypes.SIGNIN);
   const [userName, setUserName] = useState('')
 
   // true login view visible, 
@@ -35,7 +36,7 @@ function App() {
     }
   }
 
-  const changeLoginMode = (value: LoginTypes) => {
+  const changeLoginMode = (value: LogTypes) => {
     setLoginMode(value)
   }
 

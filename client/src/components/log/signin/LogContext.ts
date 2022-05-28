@@ -1,6 +1,6 @@
 import React from "react";
 
-interface loginContextType {
+interface logContextType {
   loadingLogData: boolean,
   changeLoadingLogData: (value: boolean) => void
 
@@ -15,7 +15,7 @@ interface loginContextType {
 
 }
 
-export const LoginContext = React.createContext<loginContextType>({
+export const LogContext = React.createContext<logContextType>({
   loadingLogData: false,
   changeLoadingLogData: () => { },
 
