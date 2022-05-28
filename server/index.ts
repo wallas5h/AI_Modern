@@ -7,6 +7,7 @@ import { config } from './config/config';
 import { accountRouter } from './routers/accountRouter';
 import { homeRouter } from './routers/homeRouter';
 import { loginRouter } from './routers/loginRouter';
+import { logoutRouter } from './routers/logoutRouter';
 import { registerRouter } from './routers/registerRouter';
 import './utils/db';
 import { handleError } from './utils/errors';
@@ -40,6 +41,7 @@ const router = Router();
 
 router.use('/', homeRouter);
 router.use('/login', loginRouter);
+router.use('/logout', logoutRouter);
 router.use('/register', registerRouter);
 router.use('/account', accountRouter);
 
@@ -47,7 +49,7 @@ app.use('/api', router);
 
 
 app.get('/api/terms', (req, res) => {
-  res.send('terms of service')
+  res.send('Terms of service. Coming soon.')
 });
 
 app.use(handleError);

@@ -45,7 +45,7 @@ export class UserRepository {
     return result.length === 0 ? null : new UserRecord(result[0])
   }
 
-  static async updateRefreshToken(id: string, token: string) {
+  static async updateRefreshToken(id: string, token: string | null) {
 
     await pool.execute('UPDATE `registration` SET `refreshToken`=:token WHERE `id`=:id', {
       id,
