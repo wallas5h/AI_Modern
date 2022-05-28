@@ -31,6 +31,6 @@ export type UserResetPasswordReq = Omit<UserLog, 'id' | 'password'>
 export interface UserLogInRes {
   id?: string | null
   sessionToken?: string | null
-  refreshToken?: string | null
+  firstName?: string | null
   message?: string
 }
