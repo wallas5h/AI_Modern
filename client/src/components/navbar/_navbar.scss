@@ -34,9 +34,22 @@
 
   &:nth-child(1) {
     background-color: darken($color: $color-text, $amount: 20%);
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 
     &:hover {
       background-color: darken($color: $color-text, $amount: 40%);
+    }
+  }
+
+  &.user {
+    @extend %button;
+    cursor: auto;
+
+    &:hover {
+      background-color: darken($color: $color-text, $amount: 20%);
     }
   }
 }
@@ -47,7 +60,7 @@
   justify-content: center;
   align-items: center;
 
-  padding: 1rem 6rem;
+  padding: 1rem 5rem 1rem 6rem;
   @extend .gradient__bg;
 
 
@@ -108,7 +121,6 @@
     button {
       @extend %button;
     }
-
   }
 }
 
@@ -135,8 +147,30 @@
     border-radius: 5px;
     box-shadow: 0 0 5 rgba(0, 0, 0, 0.2);
 
+    p {
+      margin: 1rem 0;
+      border-bottom: 1px solid transparent;
+      cursor: pointer;
+
+      &:hover {
+        border-bottom: 1px solid #81AFDD;
+      }
+    }
+
     &-links-sign {
       display: none;
+
+      p {
+        cursor: auto;
+        max-width: 150px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        &:hover {
+          border-bottom: 1px solid transparent;
+        }
+      }
 
       button {
         @extend %button;
@@ -150,15 +184,6 @@
     }
 
 
-    p {
-      margin: 1rem 0;
-      border-bottom: 1px solid transparent;
-      cursor: pointer;
-
-      &:hover {
-        border-bottom: 1px solid #81AFDD;
-      }
-    }
   }
 
   svg {
@@ -167,7 +192,7 @@
 
 }
 
-@media screen and (max-width: 1050px) {
+@media screen and (max-width: 1075px) {
   .gpt__navbar-links_container {
     display: none;
   }

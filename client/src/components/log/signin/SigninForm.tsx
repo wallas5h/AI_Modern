@@ -5,21 +5,17 @@ import { AppContext } from '../../../AppContext';
 import { apiUrl } from "../../../config/api";
 import { messagesValidation as messages, singinFunctionFormValidation } from "../../../utils/logs.utils";
 import '../sass/_loginForm.scss';
+import { ServerFormValidationComponent } from "../serverValidation/ServerFormValidComponent";
 import { LogContext } from "./LogContext";
 import { SigninFormValidationComponent } from "./SigninFormValidComponent";
 
 
 export const SignInForm = () => {
 
-  const loginContext = React.useContext(LogContext);
-  const { changeLoadingLogData,
-    serverSigninMessage: serverMessage,
-    setServerSigninMessage: setServerMessage,
-    resetPasword,
-    changeResetPassword } = loginContext
+  const { changeLoadingLogData, serverSigninMessage, setServerSigninMessage } = React.useContext(LogContext);
 
-  const appContext = React.useContext(AppContext);
-  const { changeUserName, changeUserLogged } = appContext;
+  const { changeUserName, changeUserLogged, changeUserId } = React.useContext(AppContext);
+
 
   const [form, setForm] = useState<UserLogInReq>({
     mail: '',
@@ -61,16 +57,17 @@ export const SignInForm = () => {
 
       const data: UserLogInRes = await res.json();
 
-      const sessionToken = data.sessionToken;
-      const jwt = data.sessionToken;
-
       if (data.message) {
-        setServerMessage(data.message)
+        setServerSigninMessage(data.message)
       }
-      else {
+
+      if (data.firstName && data.id) {
         changeUserLogged(true);
-        changeUserName(form.mail)
+        changeUserName(data.firstName);
+        changeUserId(data.id);
       }
+
+
     } catch (err) {
       throw new Error()
     }
@@ -85,7 +82,12 @@ export const SignInForm = () => {
   }
 
   return (
-    <>
+    <>{serverSigninMessage ?
+
+      <ServerFormValidationComponent serverMessage={serverSigninMessage} setServerMessage={setServerSigninMessage} />
+
+      :
+
       <form onSubmit={sendForm}>
         <div className="form-block__input-wrapper">
           <div className="form-group form-group--signin">
@@ -114,13 +116,14 @@ export const SignInForm = () => {
               value={form.password}
               onChange={change}
             />
-            {serverMessage && <SigninFormValidationComponent />}
+            {serverSigninMessage && <SigninFormValidationComponent />}
 
           </div>
         </div>
         <button className="button button--primary full-width" type="submit">Sign In</button>
 
       </form>
+    }
     </>
   )
 }

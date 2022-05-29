@@ -15,8 +15,7 @@ export const enum LogTypes {
 
 export const Login = () => {
 
-  const context = React.useContext(AppContext)
-  const { isUserLogged, loginVisible, loginMode, changeLoginMode } = context;
+  const { loginVisible } = React.useContext(AppContext);
 
   const [loading, setLoading] = useState<boolean>(false);
   const [resetPasword, setResetPassword] = useState<boolean>(false);

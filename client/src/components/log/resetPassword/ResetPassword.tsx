@@ -73,37 +73,44 @@ export const ResetPassword = () => {
   return (
     <>
       <header className="form-block__header">
-        <h1>Reset your password</h1>
-        <p>To reset your password, enter your email below and submit. An email will be sent to you with instructions about how to complete the process.</p>
-        <form onSubmit={sendForm}>
-          <div className="form-block__input-wrapper">
-            <div className="form-group form-group--signin">
-              <input
-                className="form-group__input"
-                type="email"
-                name="mail"
-                id="email"
-                placeholder="your e-mail"
-                required
-                value={form.mail}
-                onChange={change}
-              />
-              {mailValidation &&
-                <div className="form-group__validation form-group__validation--signup">
-                  <span> {textValidation}</span>
+        <h1>Reset password</h1>
+        {serverSigninMessage ?
+          <ServerFormValidationComponent serverMessage={serverSigninMessage} setServerMessage={setServerSigninMessage} />
+
+          :
+
+          <div>
+            <p>To reset your password, enter your email below and submit. An email will be sent to you with instructions about how to complete the process.</p>
+            <form onSubmit={sendForm}>
+              <div className="form-block__input-wrapper">
+                <div className="form-group form-group--signin">
+                  <input
+                    className="form-group__input"
+                    type="email"
+                    name="mail"
+                    id="email"
+                    placeholder="your e-mail"
+                    required
+                    value={form.mail}
+                    onChange={change}
+                  />
+                  {mailValidation &&
+                    <div className="form-group__validation form-group__validation--signup">
+                      <span> {textValidation}</span>
+                    </div>
+                  }
+
+
                 </div>
-              }
+              </div>
+              <button className="button button--primary full-width" type="submit">Reset password</button>
 
 
-            </div>
+
+            </form>
           </div>
-          <button className="button button--primary full-width" type="submit">Reset password</button>
+        }
 
-          {serverSigninMessage &&
-            <ServerFormValidationComponent serverMessage={serverSigninMessage} setServerMessage={setServerSigninMessage} />
-          }
-
-        </form>
       </header>
     </>)
 }

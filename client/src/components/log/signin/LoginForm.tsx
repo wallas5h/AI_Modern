@@ -7,11 +7,9 @@ import { LogTypes } from "./Login";
 import { SignInForm } from "./SigninForm";
 
 
-
-
 export const LoginForm = () => {
 
-  const { loginMode, changeLoginMode } = React.useContext(AppContext);
+  const { loginMode } = React.useContext(AppContext);
 
   return (
     <>

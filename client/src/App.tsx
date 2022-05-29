@@ -14,7 +14,8 @@ function App() {
   const [isUserLogged, setIsUserLogged] = useState<boolean>(false);
 
   const [loginMode, setLoginMode] = useState(LogTypes.SIGNIN);
-  const [userName, setUserName] = useState('')
+  const [userName, setUserName] = useState('');
+  const [userId, setUserId] = useState('');
 
   // true login view visible, 
 
@@ -28,12 +29,7 @@ function App() {
   }
 
   const changeUserLogged = (value: boolean) => {
-    if (value) {
-      return setIsUserLogged(true)
-    }
-    else {
-      setIsUserLogged(false)
-    }
+    setIsUserLogged(value)
   }
 
   const changeLoginMode = (value: LogTypes) => {
@@ -44,6 +40,9 @@ function App() {
     setUserName(value)
   }
 
+  const changeUserId = (value: string) => {
+    setUserId(value)
+  }
 
   return (
     <>
@@ -56,6 +55,8 @@ function App() {
         changeLoginMode,
         userName,
         changeUserName,
+        userId,
+        changeUserId,
       }}>
         <div className="App">
           <div className="gradient__bg">

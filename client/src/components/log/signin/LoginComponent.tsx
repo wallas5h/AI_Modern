@@ -42,11 +42,9 @@ export const LoginComponent = () => {
 
 const FormBlockHeader = () => {
 
-  const context = React.useContext(AppContext);
-  const { loginMode, changeLoginMode } = context;
+  const { loginMode, changeLoginMode } = React.useContext(AppContext);
 
-  const loginContext = React.useContext(LogContext);
-  const { loadingLogData } = loginContext
+  const { loadingLogData } = React.useContext(LogContext);
 
   const toggleChangeMode = () => {
     if (loginMode === LogTypes.SIGNUP) {

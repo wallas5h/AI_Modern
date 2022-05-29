@@ -9,7 +9,9 @@ export interface AppContextType {
   loginMode: LogTypes,
   changeLoginMode: (value: LogTypes) => void,
   userName: string,
-  changeUserName: (value: string) => void
+  changeUserName: (value: string) => void,
+  userId: string,
+  changeUserId: (value: string) => void
 }
 
 export const defaultObject = {
@@ -24,6 +26,9 @@ export const defaultObject = {
 
   userName: '',
   changeUserName: () => { },
+
+  userId: '',
+  changeUserId: () => { },
 
 }
 

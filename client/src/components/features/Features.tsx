@@ -28,7 +28,7 @@ export const Features = () => {
     <div className="gpt3__features section__padding" id='features'>
       <div className="gpt3__features-heading">
         <h1 className="gradient-text">The future depends on what we do in the present.</h1>
-        <p>The future starts today, join us!</p>
+        {/* <p>The future starts today, join us!</p> */}
 
       </div>
       <div className="gpt3__features-container">
