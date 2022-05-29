@@ -11,7 +11,7 @@ export const Possibility = () => {
       </div>
       <div className="gpt3__possibility-content">
         <h4>Request Access to Get Started</h4>
-        <h1 className="gradient-text">The possibilities are beyond your imagination</h1>
+        <h1 className="gradient-text">Imagination creates reality</h1>
         <p>GPT-3 also proved capable of having spiritual and philosophical conversations that might go beyond our cognitive boundaries.</p>
         <h4>Request Access to Get Started</h4>
       </div>

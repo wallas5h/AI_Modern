@@ -12,8 +12,8 @@ export const WhatGPT3 = () => {
           text={textFeature} />
       </div>
       <div className="gpt3__whatgpt3-heading">
-        <h1 className="gradient-text">Imagination creates reality</h1>
-        <p>Expolore The Library</p>
+        <h1 className="gradient-text">The Largest Neural Network Ever Created</h1>
+        <p><a href="https://openai.com/api/" target="_blank">Expolore The Library</a></p>
       </div>
       <div className="gpt3__whatgpt3-container">
         <Feature title={'Chatbots'} text={textChatbots} />

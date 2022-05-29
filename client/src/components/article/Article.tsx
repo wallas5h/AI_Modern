@@ -17,7 +17,7 @@ export const Article = ({ imgUrl, date, title, click }: Props) => {
       <div className="blog__article-content">
         <p>{date}</p>
         <h3>{title}</h3>
-        <a href={click}>Read more</a>
+        <a href={click} target="_blank">Read more</a>
       </div>
     </div>
   )

@@ -66,8 +66,8 @@ function App() {
           <Login />
           <WhatGPT3 />
           <Possibility />
-          <Features />
           <CTA />
+          <Features />
           <Blog />
 
           <Brand />

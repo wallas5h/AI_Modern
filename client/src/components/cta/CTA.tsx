@@ -10,7 +10,7 @@ export const CTA = () => {
         <h4>Request today and start exploring the endless possibilities.</h4>
       </div>
       <div className="gpt3__cta-button">
-        <button>Get Started</button>
+        <button><a href="https://openai.com/api/" target="_blank">Get Started</a></button>
       </div>
 
     </div>

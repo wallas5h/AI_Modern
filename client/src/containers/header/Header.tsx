@@ -9,7 +9,7 @@ export const Header = () => {
     <div className="gpt3__header section__padding" id="home">
       <div className="gpt3__header-content">
         <h1>
-          GPT-3 — The Largest Neural Network Ever Created
+          GPT-3 will change the future!
         </h1>
         <p>
           AI will have a strong impact on the world. Are you ready for this?
