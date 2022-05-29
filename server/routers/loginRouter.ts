@@ -52,8 +52,8 @@ loginRouter
 
     res.json({
       id: user.id,
+      firstName: user.firstName,
       sessionToken,
-      refreshToken,
       message: 'Sigin succesfull!'
     }) as unknown as UserLogInRes
 

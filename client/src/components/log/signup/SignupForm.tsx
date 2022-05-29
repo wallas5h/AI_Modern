@@ -1,14 +1,15 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import { UserRegisterRes } from 'types';
-import { apiUrl } from "../../config/api";
-import { LoginContext } from "./LoginContext";
-import { messagesValidation as messages, singupFunctionFormValidation as formValidation } from "./logs.utils";
-import './sass/_loginForm.scss';
+import { apiUrl } from "../../../config/api";
+import { messagesValidation as messages, singupFunctionFormValidation as formValidation } from "../../../utils/logs.utils";
+import '../sass/_loginForm.scss';
+import { ServerFormValidationComponent } from "../serverValidation/ServerFormValidComponent";
+import { LogContext } from "../signin/LogContext";
+
 
 export const SignUpForm = () => {
 
-  const loginContext = React.useContext(LoginContext);
-  const { changeLoadingLogData, serverSignupMessage: serverMessage, setServerSignupMessage: setServerMessage } = loginContext
+  const { changeLoadingLogData, serverSignupMessage, setServerSignupMessage } = React.useContext(LogContext)
 
   const [form, setForm] = useState({
     firstName: '',
@@ -70,7 +71,7 @@ export const SignUpForm = () => {
         const data: UserRegisterRes = await res.json();
 
         if (data.message) {
-          setServerMessage(data.message)
+          setServerSignupMessage(data.message)
         }
 
       }
@@ -199,26 +200,11 @@ export const SignUpForm = () => {
           </div>
         </div>
         <button className="button button--primary full-width" type="submit">Sign Up</button>
-        {serverMessage &&
-          <SingupFormValidation serverMessage={serverMessage} setServerMessage={setServerMessage} />
+        {serverSignupMessage &&
+          <ServerFormValidationComponent serverMessage={serverSignupMessage} setServerMessage={setServerSignupMessage} />
         }
       </form>
     </>
   )
 }
 
-interface Props {
-  serverMessage: string | null;
-  setServerMessage: (value: string | null) => void
-}
-
-export const SingupFormValidation = ({ serverMessage, setServerMessage }: Props) => {
-
-  return (
-    <div className="form-group__validation--server">
-
-      <span> {serverMessage}</span>
-      <button className="button button--primary full-width" onClick={() => setServerMessage(null)}>OK</button>
-    </div>
-  )
-}

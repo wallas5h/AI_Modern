@@ -36,7 +36,7 @@
     justify-content: space-between;
     align-items: center;
 
-    margin: 4rem 0 2rem;
+    margin: 2rem 0 2rem;
 
     @media (max-width: 1050px) {
       flex-direction: column;
@@ -77,7 +77,7 @@
 
     .feature__component {
       flex: 1;
-      margin: 1rem;
+      // margin: 1rem 0;
       min-width: 210px;
       flex-direction: column;
     }
@@ -93,7 +93,7 @@
 
   .feature__component {
     flex: 1;
-    margin: 1rem;
+    // margin: 1rem 0;
     min-width: 210px;
     flex-direction: column;
 

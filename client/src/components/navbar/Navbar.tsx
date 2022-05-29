@@ -2,9 +2,11 @@ import * as React from 'react';
 import { RiCloseLine, RiMenu3Line } from 'react-icons/ri';
 import { Link } from 'react-scroll';
 import logo from '../../assets/logo.svg';
-import { LoginTypes } from '../login/Login';
+import { apiUrl } from '../../config/api';
+import { LogTypes } from '../log/signin/Login';
 import { AppContext } from './../../AppContext';
 import './_navbar.scss';
+
 
 interface Props {
   ToggleMenu: () => void
@@ -36,20 +38,47 @@ export const Navbar = () => {
 
   const [toggleMenu, setToggleMenu] = React.useState<boolean>(false)
 
-  const context = React.useContext(AppContext)
-  const { changeLoginVisible } = context;
-  const { loginMode, changeLoginMode } = context;
+  const { isUserLogged, userName, userId, changeUserLogged, changeLoginVisible, changeLoginMode } = React.useContext(AppContext)
+
 
   const handleSigninClick = () => {
     changeLoginVisible(true);
-    changeLoginMode(LoginTypes.SIGNIN);
+    changeLoginMode(LogTypes.SIGNIN);
     setToggleMenu(false)
   }
 
   const handleSignupClick = () => {
     changeLoginVisible(true);
-    changeLoginMode(LoginTypes.SIGNUP);
+    changeLoginMode(LogTypes.SIGNUP);
     setToggleMenu(false)
+  }
+
+  const handleSignoutClick = async () => {
+
+    changeUserLogged(false);
+
+    try {
+      const res = await fetch(`${apiUrl}/logout`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          id: userId
+        })
+      })
+
+      const data = await res.json();
+
+
+      if (data.message) {
+        // setServerSigninMessage(data.message);
+        console.log(data.message);
+      }
+
+    } catch (err) {
+      throw new Error()
+    }
   }
 
   return (
@@ -64,8 +93,17 @@ export const Navbar = () => {
           </div>
         </div>
         <div className="gpt__navbar-sign">
-          <p onClick={handleSigninClick}>Sign in</p>
-          <button onClick={handleSignupClick}>Sign up</button>
+          {isUserLogged ?
+            <div>
+              <button className='user' >Log as: {userName}</button>
+              <button onClick={handleSignoutClick}>Sign out</button>
+            </div>
+            :
+            <div>
+              <button onClick={handleSigninClick}>Sign in</button>
+              <button onClick={handleSignupClick}>Sign up</button>
+            </div>
+          }
         </div>
         <div className="gpt__navbar-menu">
           {toggleMenu ?
@@ -78,8 +116,17 @@ export const Navbar = () => {
               <div className="gpt__navbar-menu_container-links">
                 <Menu ToggleMenu={() => setToggleMenu(false)} />
                 <div className="gpt__navbar-menu_container-links-sign">
-                  <p onClick={handleSigninClick}>Sign in</p>
-                  <button onClick={handleSignupClick}>Sign up</button>
+                  {isUserLogged ?
+                    <div>
+                      <p >Log as: {userName}</p>
+                      <button onClick={handleSignoutClick}>Sign out</button>
+                    </div>
+                    :
+                    <div>
+                      <button onClick={handleSigninClick}>Sign in</button>
+                      <button onClick={handleSignupClick}>Sign up</button>
+                    </div>
+                  }
                 </div>
               </div>
 

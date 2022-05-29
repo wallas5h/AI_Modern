@@ -14,9 +14,10 @@
 }
 
 %button {
+  margin-right: 0.5rem;
   padding: 0.5rem 1rem;
 
-  background-color: #ff4820;
+  background-color: $color-button;
   border-radius: 5px;
   border: 0;
   outline: none;
@@ -26,6 +27,31 @@
   font-weight: 500;
   line-height: 25px;
   cursor: pointer;
+
+  &:hover {
+    background-color: darken($color: $color-button, $amount: 20%);
+  }
+
+  &:nth-child(1) {
+    background-color: darken($color: $color-text, $amount: 20%);
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    &:hover {
+      background-color: darken($color: $color-text, $amount: 40%);
+    }
+  }
+
+  &.user {
+    @extend %button;
+    cursor: auto;
+
+    &:hover {
+      background-color: darken($color: $color-text, $amount: 20%);
+    }
+  }
 }
 
 
@@ -34,7 +60,7 @@
   justify-content: center;
   align-items: center;
 
-  padding: 1rem 6rem;
+  padding: 1rem 5rem 1rem 6rem;
   @extend .gradient__bg;
 
 
@@ -68,6 +94,15 @@
         @extend %paragraf;
       }
 
+      a {
+        cursor: pointer;
+        border-bottom: 1px solid transparent;
+
+        &:hover {
+          border-bottom: 1px solid #81AFDD;
+        }
+      }
+
       button {
         @extend %button;
       }
@@ -94,6 +129,7 @@
   display: none;
   position: relative;
 
+
   &_container {
     display: flex;
     justify-content: flex-end;
@@ -111,19 +147,43 @@
     border-radius: 5px;
     box-shadow: 0 0 5 rgba(0, 0, 0, 0.2);
 
-    &-links-sign {
-      display: none;
+    p {
+      margin: 1rem 0;
+      border-bottom: 1px solid transparent;
+      cursor: pointer;
 
-
-      button {
-        @extend %button;
+      &:hover {
+        border-bottom: 1px solid #81AFDD;
       }
     }
 
-    p {
-      margin: 1rem 0;
-      cursor: pointer;
+    &-links-sign {
+      display: none;
+
+      p {
+        cursor: auto;
+        max-width: 150px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        &:hover {
+          border-bottom: 1px solid transparent;
+        }
+      }
+
+      button {
+        @extend %button;
+        margin-right: 0;
+        padding: 0.25rem 1rem;
+      }
+
+      button:nth-child(1) {
+        margin-bottom: 0.5rem;
+      }
     }
+
+
   }
 
   svg {
@@ -132,7 +192,7 @@
 
 }
 
-@media screen and (max-width: 1050px) {
+@media screen and (max-width: 1075px) {
   .gpt__navbar-links_container {
     display: none;
   }
